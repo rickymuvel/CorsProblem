@@ -19,3 +19,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/register', [
     'uses' => 'UserController@create'
 ]);
+
+Route::post('/perfil', [
+   'uses' => 'PerfilController@crearPerfil'
+]);
+
+Route::get('/perfil', [
+    'uses'=> 'PerfilController@getPerfiles'
+]);
+
+Route::get('/proveedor', [
+    'uses' => 'ProveedorController@getProveedores'
+]);
+
+Route::post('/proveedor', [
+    'uses' => 'ProveedorController@setProveedor'
+]);
