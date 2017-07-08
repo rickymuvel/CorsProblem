@@ -25,10 +25,24 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Usuario::class, function (Faker\Generator $faker) {
     return [
-        'nombre' => $faker->name,
-        'direccion' => $faker->address,
-        'telefono' => $faker->phoneNumber,
-        'email' => $faker->email,
+        "dni" => $faker->randomNumber(8),
+        "ap_paterno" => $faker->lastName,
+        "ap_materno" => $faker->lastName,
+        "nombres" => $faker->name,
+        "fecnac" => $faker->date(),
+        "est_civil" => $faker->randomElement(array('Soltero/a', 'Casado/a', 'Viudo/a', 'Divorciado/a')),
+        "fec_ingreso" => $faker->date(),
+        "movil" => $faker->phoneNumber,
+        "fijo" => $faker->phoneNumber,
+        "direccion" => $faker->streetAddress,
+        "ubigeo" => $faker->city,
+        "email_corp" => $faker->companyEmail,
+        "email_per" => $faker->email,
+        "login" => $faker->userName,
+        "contacto_emergencia" => $faker->colorName,
+        "telef_contacto" => $faker->phoneNumber,
+        "perfil" => $faker->randomElement(array('Administrador','Jefe de cuenta', 'Agente Call', 'Campo')),
+        "turno" => $faker->randomElement(array('Mañana', 'Tarde', 'Noche')),
         'remember_token' => str_random(10)
     ];
 });
