@@ -28,6 +28,13 @@ Route::get('/perfil', [
     'uses'=> 'PerfilController@getPerfiles'
 ]);
 
+Route::post('/usuario', [
+   'uses' => 'UsuarioController@setUsuario'
+]);
+Route::get('/usuario', [
+    'uses' => 'UsuarioController@getUsuarios'
+]);
+
 Route::get('/proveedor', [
     'uses' => 'ProveedorController@getProveedores'
 ]);
