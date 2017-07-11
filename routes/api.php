@@ -28,6 +28,10 @@ Route::get('/perfil', [
     'uses'=> 'PerfilController@getPerfiles'
 ]);
 
+Route::post('/ubigeo', [
+    'uses' => 'UbigeoController@buscar'
+]);
+
 Route::post('/usuario', [
    'uses' => 'UsuarioController@setUsuario'
 ]);

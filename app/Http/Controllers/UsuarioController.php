@@ -9,7 +9,7 @@ class UsuarioController extends Controller
 {
     public function setUsuario(Request $request)
     {
-        dd($request->input);
+        return response()->json(["usuarios"=>"asdfasdf"], 201);
     }
 
     public function getUsuarios(){
