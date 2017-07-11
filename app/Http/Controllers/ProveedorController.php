@@ -11,7 +11,7 @@ class ProveedorController extends Controller
     {
          $listado = Proveedor::all();
          $datos = array(
-             "listado" => $listado
+             "proveedores" => $listado
          );
          return response()->json($datos, 201);
     }

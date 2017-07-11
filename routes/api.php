@@ -35,6 +35,9 @@ Route::get('/usuario', [
     'uses' => 'UsuarioController@getUsuarios'
 ]);
 
+Route::post('/proveedor', [
+    'uses' => 'ProveedorController@setProveedor'
+]);
 Route::get('/proveedor', [
     'uses' => 'ProveedorController@getProveedores'
 ]);

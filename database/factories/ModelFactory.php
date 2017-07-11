@@ -46,3 +46,18 @@ $factory->define(App\Usuario::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10)
     ];
 });
+
+
+$factory->define(App\Proveedor::class, function (Faker\Generator $faker) {
+    return [
+        "razon_social" => $faker->company,
+        "ruc" => $faker->randomNumber(9),
+        "rubro" => $faker->randomElement(array("Carpintero", "Electricista", "Gasfitero", "Plomero", "Analista de sistemas", "Programador", "Diseñador", "Modelador")),
+        "telefono1" => $faker->phoneNumber,
+        "telefono2" => $faker->phoneNumber,
+        "telefono3" => $faker->phoneNumber,
+        "representante" => $faker->name,
+        "contacto" => $faker->name,
+        "telf_contacto" => $faker->phoneNumber
+    ];
+});
