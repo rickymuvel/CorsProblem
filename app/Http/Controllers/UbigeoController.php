@@ -9,7 +9,8 @@ class UbigeoController extends Controller
 {
     public function buscar(Request $request)
     {
-        $registros = Ubigeo::where('dist', 'like', '%'. $request->input('term') . '%')->get();
+//        $registros = Ubigeo::where('dist', 'like', '%'. $request->input('term') . '%')->get();
+        $registros = Ubigeo::where('desc_ubigeo_inei', 'like', '%'. $request->input('term') . '%')->get();
         return response()->json(["ubigeo" => $registros], 201);
     }
 }
