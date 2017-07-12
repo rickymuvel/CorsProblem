@@ -35,7 +35,7 @@ $factory->define(App\Usuario::class, function (Faker\Generator $faker) {
         "movil" => $faker->phoneNumber,
         "fijo" => $faker->phoneNumber,
         "direccion" => $faker->streetAddress,
-        "ubigeo" => $faker->city,
+        "idubigeo" => $faker->randomElement(array("010101","010102","010103","100204","140106","131015","140109","150101","030506","040406","050524","050616","080106","080409")),
         "email_corp" => $faker->companyEmail,
         "email_per" => $faker->email,
         "login" => $faker->userName,
@@ -46,7 +46,6 @@ $factory->define(App\Usuario::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10)
     ];
 });
-
 
 $factory->define(App\Proveedor::class, function (Faker\Generator $faker) {
     return [

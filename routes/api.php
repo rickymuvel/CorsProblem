@@ -32,20 +32,16 @@ Route::post('/ubigeo', [
     'uses' => 'UbigeoController@buscar'
 ]);
 
-Route::post('/usuario', [
-   'uses' => 'UsuarioController@setUsuario'
-]);
 Route::get('/usuario', [
     'uses' => 'UsuarioController@getUsuarios'
 ]);
-
-Route::post('/proveedor', [
-    'uses' => 'ProveedorController@setProveedor'
+Route::post('/usuario', [
+    'uses' => 'UsuarioController@setUsuario'
 ]);
+
 Route::get('/proveedor', [
     'uses' => 'ProveedorController@getProveedores'
 ]);
-
 Route::post('/proveedor', [
     'uses' => 'ProveedorController@setProveedor'
 ]);
