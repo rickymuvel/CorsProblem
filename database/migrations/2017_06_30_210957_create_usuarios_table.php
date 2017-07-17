@@ -31,7 +31,8 @@ class CreateUsuariosTable extends Migration
             $table->string("login");
             $table->string("contacto_emergencia");
             $table->string("telef_contacto");
-            $table->string("perfil");
+            $table->integer("id_perfil")->unsigned();
+            $table->foreign('id_perfil')->references('id')->on('perfiles');
             $table->string("turno");
             $table->rememberToken();
             $table->timestamps();

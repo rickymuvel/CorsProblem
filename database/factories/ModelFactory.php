@@ -41,7 +41,7 @@ $factory->define(App\Usuario::class, function (Faker\Generator $faker) {
         "login" => $faker->userName,
         "contacto_emergencia" => $faker->colorName,
         "telef_contacto" => $faker->phoneNumber,
-        "perfil" => $faker->randomElement(array('Administrador','Jefe de cuenta', 'Agente Call', 'Campo')),
+        "id_perfil" => $faker->randomElement(array(1,2,3)),
         "turno" => $faker->randomElement(array('Mañana', 'Tarde', 'Noche')),
         'remember_token' => str_random(10)
     ];

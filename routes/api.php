@@ -38,6 +38,9 @@ Route::get('/usuario', [
 Route::post('/usuario', [
     'uses' => 'UsuarioController@setUsuario'
 ]);
+Route::put('/usuario', [
+    'uses' => 'UsuarioController@updateUsuario'
+]);
 
 Route::get('/proveedor', [
     'uses' => 'ProveedorController@getProveedores'

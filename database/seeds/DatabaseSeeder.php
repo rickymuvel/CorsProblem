@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        factory('App\Proveedor', 30)->create();
+        factory('App\Usuarios', 30)->create();
         Model::reguard();
     }
 }
