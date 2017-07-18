@@ -31,7 +31,7 @@ class UsuarioController extends Controller
         $obj->login = $request->input("login");
         $obj->contacto_emergencia = $request->input("contacto_emergencia");
         $obj->telef_contacto = $request->input("telef_contacto");
-        $obj->id_perfil = $request->input("perfil");
+        $obj->id_perfil = $request->input("id_perfil");
         $obj->turno = $request->input("turno");
         $obj->remember_token = str_random(10);
         $obj->save();
@@ -47,7 +47,7 @@ class UsuarioController extends Controller
         $fecha_nac = explode("T", $request->input("fecnac"));
         $fecha_ingreso = explode("T", $request->input("fec_ingreso"));
         try {
-            Usuario::find($request->input('id'))->update([
+            Usuario::where('id', $request->input('id'))->update([
                 'ap_paterno' => $request->input("ap_paterno"),
                 'ap_materno' => $request->input("ap_materno"),
                 'nombres' => $request->input("nombres"),
