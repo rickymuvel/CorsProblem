@@ -48,3 +48,25 @@ Route::get('/proveedor', [
 Route::post('/proveedor', [
     'uses' => 'ProveedorController@setProveedor'
 ]);
+
+Route::get('/rubro', [
+    'uses' => 'RubroController@getRubros'
+]);
+Route::post('/rubro', [
+    'uses' => 'RubroController@setRubro'
+]);
+Route::put('/rubro', [
+    'uses' => 'RubroController@updateRubro'
+]);
+
+// Tipos de cartera
+
+Route::get('/tipos-cartera', [
+    'uses' => 'TipoCarteraController@getTiposCartera'
+]);
+Route::post('/tipos-cartera', [
+    'uses' => 'TipoCarteraController@setTipoCartera'
+]);
+Route::put('/tipos-cartera', [
+    'uses' => 'TipoCarteraController@updateTipoCartera'
+]);

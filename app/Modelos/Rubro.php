@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipoCartera extends Model
+class Rubro extends Model
 {
     //
 }

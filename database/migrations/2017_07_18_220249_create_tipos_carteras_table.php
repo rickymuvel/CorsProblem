@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoCarterasTable extends Migration
+class CreateTiposCarterasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,16 @@ class CreateTipoCarterasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_carteras', function (Blueprint $table) {
+        Schema::create('tipos_cartera', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 150)->unique();
+            $table->string('tipo_cartera')->unique();
+            $table->string('estado')->default('activo');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('tipo_carteras');
+        Schema::dropIfExists('tipos_carteras');
     }
 }
