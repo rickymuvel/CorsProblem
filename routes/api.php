@@ -70,3 +70,15 @@ Route::post('/tipos-cartera', [
 Route::put('/tipos-cartera', [
     'uses' => 'TipoCarteraController@updateTipoCartera'
 ]);
+
+// Tipos de producto
+
+Route::get('/tipo-productos', [
+    'uses' => 'TipoProductoController@getTipoProducto'
+]);
+Route::post('/tipo-productos', [
+    'uses' => 'TipoProductoController@setTipoProducto'
+]);
+Route::put('/tipo-productos', [
+    'uses' => 'TipoProductoController@updateTipoProducto'
+]);
