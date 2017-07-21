@@ -82,3 +82,51 @@ Route::post('/tipo-productos', [
 Route::put('/tipo-productos', [
     'uses' => 'TipoProductoController@updateTipoProducto'
 ]);
+
+// Tipos de resultado
+
+Route::get('/tipos-resultado', [
+    'uses' => 'TiposResultadoController@getTiposResultado'
+]);
+Route::post('/tipos-resultado', [
+    'uses' => 'TiposResultadoController@setTiposResultado'
+]);
+Route::put('/tipos-resultado', [
+    'uses' => 'TiposResultadoController@updateTiposResultado'
+]);
+
+// Tipos de resultado
+
+Route::get('/tipo-direccion', [
+    'uses' => 'TipoDireccionController@getTiposDireccion'
+]);
+Route::post('/tipo-direccion', [
+    'uses' => 'TipoDireccionController@setTipoDireccion'
+]);
+Route::put('/tipo-direccion', [
+    'uses' => 'TipoDireccionController@updateTipoDireccion'
+]);
+
+// Tipos de telefono
+
+Route::get('/tipo-telefono', [
+    'uses' => 'TipoTelefonoController@getTiposTelefono'
+]);
+Route::post('/tipo-telefono', [
+    'uses' => 'TipoTelefonoController@setTipoTelefono'
+]);
+Route::put('/tipo-telefono', [
+    'uses' => 'TipoTelefonoController@updateTipoTelefono'
+]);
+
+// Tipos de contacto
+
+Route::get('/tipo-contacto', [
+    'uses' => 'TipoContactoController@getTiposContacto'
+]);
+Route::post('/tipo-contacto', [
+    'uses' => 'TipoContactoController@setTipoContacto'
+]);
+Route::put('/tipo-contacto', [
+    'uses' => 'TipoContactoController@updateTipoContacto'
+]);

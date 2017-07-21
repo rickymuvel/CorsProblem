@@ -26,9 +26,9 @@ class CreateUsuariosTable extends Migration
             $table->string("fijo");
             $table->string("direccion");
             $table->char("idubigeo",10);
-            $table->string("email_corp");
-            $table->string("email_per");
-            $table->string("login");
+            $table->string("email_corp")->unique();
+            $table->string("email_per")->unique();
+            $table->string("login")->unique();
             $table->string("contacto_emergencia");
             $table->string("telef_contacto");
             $table->integer("id_perfil")->unsigned();

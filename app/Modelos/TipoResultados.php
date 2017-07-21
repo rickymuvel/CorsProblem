@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cartera extends Model
+class TipoResultados extends Model
 {
     //
 }

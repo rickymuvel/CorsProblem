@@ -23,6 +23,6 @@ class CreateTiposCarterasTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('tipos_carteras');
+        Schema::dropIfExists('tipos_cartera');
     }
 }
