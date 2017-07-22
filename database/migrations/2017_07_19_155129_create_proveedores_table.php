@@ -17,7 +17,7 @@ class CreateProveedoresTable extends Migration
             $table->increments('id');
             $table->string('razon_social')->unique();
             $table->string('ruc')->unique();
-            $table->string('rubro');
+            $table->integer('id_rubro')->unsigned();
             $table->string('telefono1');
             $table->string('telefono2')->nullable();
             $table->string('telefono3')->nullable();
@@ -25,6 +25,7 @@ class CreateProveedoresTable extends Migration
             $table->string('contacto');
             $table->string('telf_contacto');
             $table->string('estado')->default('activo');
+            $table->foreign('id_rubro')->references('id')->on('rubros');
             $table->timestamps();
         });
     }

@@ -9,11 +9,12 @@ class ProveedorController extends Controller
 {
     public function getProveedores()
     {
-         $listado = Proveedor::all();
-         $datos = array(
-             "proveedores" => $listado
-         );
-         return response()->json($datos, 201);
+        try {
+            $listado = Proveedor::all();
+            return response()->json(["proveedores"=>$listado, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);
+        }
     }
 
     public function setProveedor(Request $request)
