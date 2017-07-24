@@ -22,7 +22,7 @@ class TipoProductoController extends Controller
             $registro->tipo_producto = $request->input('tipo_producto');
             $registro->save();
             $datos = TiposProducto::all();
-            return response()->json(["Tipo_Productos"=>$datos, "status"=>true], 201);
+            return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
             return response()->json(["error_msj"=>$e->getMessage(), "status"=>false, "code" => $e->getCode()], 201);
         }
