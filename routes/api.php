@@ -170,3 +170,27 @@ Route::put('/resultado', [
     'uses' => 'ResultadoController@updateResultados'
 ]);
 
+// Justificaciones
+
+Route::get('/justificacion', [
+    'uses' => 'JustificacionController@getJustificaciones'
+]);
+Route::post('/justificacion', [
+    'uses' => 'JustificacionController@setJustificacion'
+]);
+Route::put('/justificacion', [
+    'uses' => 'JustificacionController@updateJustificacion'
+]);
+
+// Equipo de trabajo
+
+Route::get('/equipo-trabajo', [
+    'uses' => 'EquipoTrabajoController@getEquiposTrabajos'
+]);
+Route::post('/equipo-trabajo', [
+    'uses' => 'EquipoTrabajoController@setEquipoTrabajo'
+]);
+Route::put('/equipo-trabajo', [
+    'uses' => 'EquipoTrabajoController@updateEquipoTrabajo'
+]);
+
