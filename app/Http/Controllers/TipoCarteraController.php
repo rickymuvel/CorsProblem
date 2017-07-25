@@ -12,7 +12,7 @@ class TipoCarteraController extends Controller
             $datos = TiposCartera::all();
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch (\Exception $e){
-            return response()->json(["msj"=>$e->getMessage(), "status"=>false], 500);
+            return response()->json(["msj"=>$e->getMessage(), "status"=>false], 201);
         }
     }
 
@@ -24,7 +24,7 @@ class TipoCarteraController extends Controller
             $datos = TiposCartera::all();
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
-            return response()->json(["datos"=>$e->getMessage(), "status"=>false], 500);
+            return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
         }
     }
 
@@ -36,8 +36,7 @@ class TipoCarteraController extends Controller
             $datos = TiposCartera::all();
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch (\Exception $e){
-            return response()->json(["datos"=>$e->getMessage(), "status"=>false], 500);
+            return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
         }
-
     }
 }

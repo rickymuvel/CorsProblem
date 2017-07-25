@@ -160,20 +160,13 @@ Route::put('/producto', [
 
 // Resultados
 
-Route::get('/resultados', [
+Route::get('/resultado', [
     'uses' => 'ResultadoController@getResultados'
 ]);
-Route::post('/resultados', [
+Route::post('/resultado', [
     'uses' => 'ResultadoController@setResultados'
 ]);
-Route::put('/resultados', [
+Route::put('/resultado', [
     'uses' => 'ResultadoController@updateResultados'
 ]);
-
-
-Route::post('/personas', [
-    'uses' => 'PersonasController@crearPersona'
-]);
-
-
 
