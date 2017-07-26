@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class PerfilController extends Controller
 {
-    public function crearPerfil(Request $request)
+    public function set(Request $request)
     {
         $user = new Perfil();
         $user->perfil = $request->input('perfil');
@@ -21,7 +21,7 @@ class PerfilController extends Controller
         return response()->json(['perfiles'=> $perfiles],201);
     }
 
-    public function getPerfiles()
+    public function get()
     {
        $perfiles = Perfil::all();
        return response()->json(['perfiles'=>$perfiles], 201);

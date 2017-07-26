@@ -16,7 +16,7 @@ class CreateTipoTelefonosTable extends Migration
         Schema::create('tipos_telefono', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_telefono')->unique();
-            $table->string('estado')->default('activo');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ResultadoController extends Controller
 {
-    public function getResultados(){
+    public function get(){
         try {
             $datos = Resultado::all();
             return response()->json(["datos"=>$datos, "status"=>true], 201);
@@ -16,7 +16,7 @@ class ResultadoController extends Controller
         }
     }
 
-    public function setResultados(Request $request){
+    public function set(Request $request){
         try {
             $registro = new Resultado();
             $registro->resultado = $request->input('resultado');
@@ -29,7 +29,7 @@ class ResultadoController extends Controller
         }
     }
 
-    public function updateResultados(Request $request){
+    public function update(Request $request){
         try {
             Resultado::where('id', $request->input('id'))->update([
                 'resultado' => $request->input("resultado"),

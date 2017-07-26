@@ -17,7 +17,7 @@ class CreateRubrosTable extends Migration
             $table->increments('id');
             $table->string('nombre')->unique();
             $table->string('descripcion')->nullable();
-            $table->string('estado')->default('activo');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

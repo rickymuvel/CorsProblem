@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class UsuarioController extends Controller
 {
 
-    public function setUsuario(Request $request)
+    public function set(Request $request)
     {
         $obj = new Usuario();
         $obj->dni = $request->input("dni");
@@ -42,7 +42,7 @@ class UsuarioController extends Controller
         return response()->json(["usuarios"=>$consulta], 201);
     }
 
-    public function updateUsuario(Request $request)
+    public function update(Request $request)
     {
         $fecha_nac = explode("T", $request->input("fecnac"));
         $fecha_ingreso = explode("T", $request->input("fec_ingreso"));
@@ -76,7 +76,7 @@ class UsuarioController extends Controller
         return response()->json(["editado"=>$editado, "msj"=> $msj], 201);
     }
 
-    public function getUsuarios(){
+    public function get(){
         $consulta = DB::select('call sp_getUsuarios()');
         return response()->json(["usuarios"=>$consulta], 201);
     }

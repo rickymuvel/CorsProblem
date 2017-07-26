@@ -24,7 +24,7 @@ class CreateProveedoresTable extends Migration
             $table->string('representante');
             $table->string('contacto');
             $table->string('telf_contacto');
-            $table->string('estado')->default('activo');
+            $table->tinyInteger('estado')->default(1);
             $table->foreign('id_rubro')->references('id')->on('rubros');
             $table->timestamps();
         });

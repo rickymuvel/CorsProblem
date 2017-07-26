@@ -16,7 +16,7 @@ class CreateTipoContactosTable extends Migration
         Schema::create('tipos_contacto', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_contacto')->unique();
-            $table->string('estado')->default('activo');
+            $table->tinyInteger('estado')->default(0);
             $table->timestamps();
         });
     }

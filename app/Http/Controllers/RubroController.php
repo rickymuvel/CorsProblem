@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class RubroController extends Controller
 {
-    public function setRubro(Request $request)
+    public function set(Request $request)
     {
         $obj = new Rubro();
         $obj->nombre = $request->input("nombre");
@@ -18,7 +18,7 @@ class RubroController extends Controller
         return response()->json(["rubros"=>$datos], 201);
     }
 
-    public function updateRubro(Request $request)
+    public function update(Request $request)
     {
         try {
             Rubro::where('id', $request->input('id'))->update([
@@ -35,7 +35,7 @@ class RubroController extends Controller
         return response()->json(["editado"=>$editado, "msj"=> $msj], 201);
     }
 
-    public function getRubros(){
+    public function get(){
         $datos = Rubro::all();
         return response()->json(["rubros"=>$datos], 201);
     }

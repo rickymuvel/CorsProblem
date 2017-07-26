@@ -35,6 +35,7 @@ class CreateUsuariosTable extends Migration
             $table->foreign('id_perfil')->references('id')->on('perfiles');
             $table->string("turno");
             $table->rememberToken();
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

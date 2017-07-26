@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class CarteraController extends Controller
 {
-    public function getCarteras(){
+    public function get(){
         try {
             $listado = DB::select('call sp_getCarteras()');
             return response()->json(["datos"=>$listado, "status"=>true], 201);
@@ -17,13 +17,12 @@ class CarteraController extends Controller
         }
     }
 
-    public function setCartera(Request $request){
+    public function set(Request $request){
         try {
             $cartera = new Cartera();
             $cartera->id_proveedor = $request->input('id_proveedor');
             $cartera->id_tipo_cartera = $request->input('id_tipo_cartera');
             $cartera->cartera = $request->input('cartera');
-            $cartera->segmento = $request->input('segmento');
             $cartera->save();
             $listado = DB::select('call sp_getCarteras()');
             return response()->json(["datos"=>$listado, "status"=>true], 201);
@@ -32,13 +31,12 @@ class CarteraController extends Controller
         }
     }
 
-    public function updateCartera(Request $request){
+    public function update(Request $request){
         try {
             Cartera::where('id', $request->input('id'))->update([
             'id_proveedor' => $request->input('id_proveedor'),
             'id_tipo_cartera' => $request->input('id_tipo_cartera'),
-            'cartera' => $request->input('cartera'),
-            'segmento' => $request->input('segmento')
+            'cartera' => $request->input('cartera')
             ]);
 
             $listado = DB::select('call sp_getCarteras()');

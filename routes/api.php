@@ -16,16 +16,16 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/register', [
-    'uses' => 'UserController@create'
-]);
+//Route::post('/register', [
+//    'uses' => 'UserController@create'
+//]);
 
 Route::post('/perfil', [
-   'uses' => 'PerfilController@crearPerfil'
+   'uses' => 'PerfilController@set'
 ]);
 
 Route::get('/perfil', [
-    'uses'=> 'PerfilController@getPerfiles'
+    'uses'=> 'PerfilController@get'
 ]);
 
 Route::post('/ubigeo', [
@@ -33,164 +33,223 @@ Route::post('/ubigeo', [
 ]);
 
 Route::get('/usuario', [
-    'uses' => 'UsuarioController@getUsuarios'
+    'uses' => 'UsuarioController@get'
 ]);
 Route::post('/usuario', [
-    'uses' => 'UsuarioController@setUsuario'
+    'uses' => 'UsuarioController@set'
 ]);
 Route::put('/usuario', [
-    'uses' => 'UsuarioController@updateUsuario'
+    'uses' => 'UsuarioController@update'
 ]);
 
 Route::get('/proveedor', [
-    'uses' => 'ProveedorController@getProveedores'
+    'uses' => 'ProveedorController@get'
 ]);
 Route::post('/proveedor', [
-    'uses' => 'ProveedorController@setProveedor'
+    'uses' => 'ProveedorController@set'
 ]);
 Route::put('/proveedor', [
-    'uses' => 'ProveedorController@updateProveedor'
+    'uses' => 'ProveedorController@update'
 ]);
 
 Route::get('/rubro', [
-    'uses' => 'RubroController@getRubros'
+    'uses' => 'RubroController@get'
 ]);
 Route::post('/rubro', [
-    'uses' => 'RubroController@setRubro'
+    'uses' => 'RubroController@set'
 ]);
 Route::put('/rubro', [
-    'uses' => 'RubroController@updateRubro'
+    'uses' => 'RubroController@update'
 ]);
 
 // Tipos de cartera
 
 Route::get('/tipos-cartera', [
-    'uses' => 'TipoCarteraController@getTiposCartera'
+    'uses' => 'TipoCarteraController@get'
 ]);
 Route::post('/tipos-cartera', [
-    'uses' => 'TipoCarteraController@setTipoCartera'
+    'uses' => 'TipoCarteraController@set'
 ]);
 Route::put('/tipos-cartera', [
-    'uses' => 'TipoCarteraController@updateTipoCartera'
+    'uses' => 'TipoCarteraController@update'
 ]);
 
 // Tipos de producto
 
 Route::get('/tipo-productos', [
-    'uses' => 'TipoProductoController@getTipoProducto'
+    'uses' => 'TipoProductoController@get'
 ]);
 Route::post('/tipo-productos', [
-    'uses' => 'TipoProductoController@setTipoProducto'
+    'uses' => 'TipoProductoController@set'
 ]);
 Route::put('/tipo-productos', [
-    'uses' => 'TipoProductoController@updateTipoProducto'
+    'uses' => 'TipoProductoController@update'
 ]);
 
 // Tipos de resultado
 
 Route::get('/tipos-resultado', [
-    'uses' => 'TiposResultadoController@getTiposResultado'
+    'uses' => 'TiposResultadoController@get'
 ]);
 Route::post('/tipos-resultado', [
-    'uses' => 'TiposResultadoController@setTiposResultado'
+    'uses' => 'TiposResultadoController@set'
 ]);
 Route::put('/tipos-resultado', [
-    'uses' => 'TiposResultadoController@updateTiposResultado'
+    'uses' => 'TiposResultadoController@update'
 ]);
 
 // Tipos de resultado
 
 Route::get('/tipo-direccion', [
-    'uses' => 'TipoDireccionController@getTiposDireccion'
+    'uses' => 'TipoDireccionController@get'
 ]);
 Route::post('/tipo-direccion', [
-    'uses' => 'TipoDireccionController@setTipoDireccion'
+    'uses' => 'TipoDireccionController@set'
 ]);
 Route::put('/tipo-direccion', [
-    'uses' => 'TipoDireccionController@updateTipoDireccion'
+    'uses' => 'TipoDireccionController@update'
 ]);
 
 // Tipos de telefono
 
 Route::get('/tipo-telefono', [
-    'uses' => 'TipoTelefonoController@getTiposTelefono'
+    'uses' => 'TipoTelefonoController@get'
 ]);
 Route::post('/tipo-telefono', [
-    'uses' => 'TipoTelefonoController@setTipoTelefono'
+    'uses' => 'TipoTelefonoController@set'
 ]);
 Route::put('/tipo-telefono', [
-    'uses' => 'TipoTelefonoController@updateTipoTelefono'
+    'uses' => 'TipoTelefonoController@update'
 ]);
 
 // Tipos de contacto
 
 Route::get('/tipo-contacto', [
-    'uses' => 'TipoContactoController@getTiposContacto'
+    'uses' => 'TipoContactoController@get'
 ]);
 Route::post('/tipo-contacto', [
-    'uses' => 'TipoContactoController@setTipoContacto'
+    'uses' => 'TipoContactoController@set'
 ]);
 Route::put('/tipo-contacto', [
-    'uses' => 'TipoContactoController@updateTipoContacto'
+    'uses' => 'TipoContactoController@update'
 ]);
 
 // Cartera
 
 Route::get('/cartera', [
-    'uses' => 'CarteraController@getCarteras'
+    'uses' => 'CarteraController@get'
 ]);
 Route::post('/cartera', [
-    'uses' => 'CarteraController@setCartera'
+    'uses' => 'CarteraController@set'
 ]);
 Route::put('/cartera', [
-    'uses' => 'CarteraController@updateCartera'
+    'uses' => 'CarteraController@update'
 ]);
 
 // Producto
 
 Route::get('/producto', [
-    'uses' => 'ProductoController@getProductos'
+    'uses' => 'ProductoController@get'
 ]);
 Route::post('/producto', [
-    'uses' => 'ProductoController@setProducto'
+    'uses' => 'ProductoController@set'
 ]);
 Route::put('/producto', [
-    'uses' => 'ProductoController@updateProducto'
+    'uses' => 'ProductoController@update'
 ]);
 
 // Resultados
 
 Route::get('/resultado', [
-    'uses' => 'ResultadoController@getResultados'
+    'uses' => 'ResultadoController@get'
 ]);
 Route::post('/resultado', [
-    'uses' => 'ResultadoController@setResultados'
+    'uses' => 'ResultadoController@set'
 ]);
 Route::put('/resultado', [
-    'uses' => 'ResultadoController@updateResultados'
+    'uses' => 'ResultadoController@update'
 ]);
 
 // Justificaciones
 
 Route::get('/justificacion', [
-    'uses' => 'JustificacionController@getJustificaciones'
+    'uses' => 'JustificacionController@get'
 ]);
 Route::post('/justificacion', [
-    'uses' => 'JustificacionController@setJustificacion'
+    'uses' => 'JustificacionController@set'
 ]);
 Route::put('/justificacion', [
-    'uses' => 'JustificacionController@updateJustificacion'
+    'uses' => 'JustificacionController@update'
 ]);
 
 // Equipo de trabajo
 
 Route::get('/equipo-trabajo', [
-    'uses' => 'EquipoTrabajoController@getEquiposTrabajos'
+    'uses' => 'EquipoTrabajoController@get'
 ]);
 Route::post('/equipo-trabajo', [
-    'uses' => 'EquipoTrabajoController@setEquipoTrabajo'
+    'uses' => 'EquipoTrabajoController@set'
 ]);
 Route::put('/equipo-trabajo', [
-    'uses' => 'EquipoTrabajoController@updateEquipoTrabajo'
+    'uses' => 'EquipoTrabajoController@update'
 ]);
 
+// Equipo de Trabajo - Cartera
+
+Route::get('/equipo-trabajo-cartera', [
+    'uses' => 'EquipoTrabajoCarteraController@get'
+]);
+Route::post('/equipo-trabajo-cartera', [
+    'uses' => 'EquipoTrabajoCarteraController@set'
+]);
+Route::put('/equipo-trabajo-cartera', [
+    'uses' => 'EquipoTrabajoCarteraController@update'
+]);
+
+// Paleta de resultados
+
+Route::get('/paleta-resultados', [
+    'uses' => 'PaletaResultadoController@get'
+]);
+Route::post('/paleta-resultados', [
+    'uses' => 'PaletaResultadoController@set'
+]);
+Route::put('/paleta-resultados', [
+    'uses' => 'PaletaResultadoController@update'
+]);
+
+// Producto - Cartera
+
+Route::get('/producto-cartera', [
+    'uses' => 'ProductoCarteraController@get'
+]);
+Route::post('/producto-cartera', [
+    'uses' => 'ProductoCarteraController@set'
+]);
+Route::put('/producto-cartera', [
+    'uses' => 'ProductoCarteraController@update'
+]);
+
+// Producto - Proveedor
+
+Route::get('/producto-proveedor', [
+    'uses' => 'ProductoProveedorController@get'
+]);
+Route::post('/producto-proveedor', [
+    'uses' => 'ProductoProveedorController@set'
+]);
+Route::put('/producto-proveedor', [
+    'uses' => 'ProductoProveedorController@update'
+]);
+
+// Tipo de Contacto - Resultado
+
+Route::get('/tipo-contacto-resultado', [
+    'uses' => 'TipoContactoResultadoController@get'
+]);
+Route::post('/tipo-contacto-resultado', [
+    'uses' => 'TipoContactoResultadoController@set'
+]);
+Route::put('/tipo-contacto-resultado', [
+    'uses' => 'TipoContactoResultadoController@update'
+]);

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TipoCarteraController extends Controller
 {
-    public function getTiposCartera(){
+    public function get(){
         try {
             $datos = TiposCartera::all();
             return response()->json(["datos"=>$datos, "status"=>true], 201);
@@ -16,7 +16,7 @@ class TipoCarteraController extends Controller
         }
     }
 
-    public function setTipoCartera(Request $request){
+    public function set(Request $request){
         try {
             $registro = new TiposCartera();
             $registro->tipo_cartera = $request->input('tipo_cartera');
@@ -28,7 +28,7 @@ class TipoCarteraController extends Controller
         }
     }
 
-    public function updateTipoCartera(Request $request){
+    public function update(Request $request){
         try {
             TiposCartera::where('id', $request->input('id'))->update([
                     'tipo_cartera' => $request->input("tipo_cartera")

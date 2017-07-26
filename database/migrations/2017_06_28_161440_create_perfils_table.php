@@ -16,7 +16,7 @@ class CreatePerfilsTable extends Migration
         Schema::create('perfiles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('perfil')->unique();
-            $table->string('estado')->default('activo');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

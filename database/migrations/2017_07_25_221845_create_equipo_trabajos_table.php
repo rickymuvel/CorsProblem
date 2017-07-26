@@ -16,7 +16,7 @@ class CreateEquipoTrabajosTable extends Migration
         Schema::create('equipos_trabajo', function (Blueprint $table) {
             $table->increments('id');
             $table->string('equipo_trabajo');
-            $table->string('estado')->default('activo');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

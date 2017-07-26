@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TipoTelefonoController extends Controller
 {
-    public function getTiposTelefono(){
+    public function get(){
         try {
             $datos = TipoTelefono::all();
             return response()->json(["datos"=>$datos, "status"=>true], 201);
@@ -16,7 +16,7 @@ class TipoTelefonoController extends Controller
         }
     }
 
-    public function setTipoTelefono(Request $request){
+    public function set(Request $request){
         try {
             $registro = new TipoTelefono();
             $registro->tipo_telefono = $request->input('tipo_telefono');
@@ -28,7 +28,7 @@ class TipoTelefonoController extends Controller
         }
     }
 
-    public function updateTipoTelefono(Request $request){
+    public function update(Request $request){
         try {
             TipoTelefono::where('id', $request->input('id'))->update([
                 'tipo_telefono' => $request->input("tipo_telefono")

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
 {
-    public function getProveedores()
+    public function get()
     {
         try {
             $listado = DB::select('call sp_getProveedores()');
@@ -18,7 +18,7 @@ class ProveedorController extends Controller
         }
     }
 
-    public function setProveedor(Request $request)
+    public function set(Request $request)
     {
         try {
             $proveedor = new Proveedor();
@@ -39,7 +39,7 @@ class ProveedorController extends Controller
         }
     }
 
-    public function updateProveedor(Request $request){
+    public function update(Request $request){
         try {
             Proveedor::where('id', $request->input('id'))->update([
                 "razon_social" => $request->input('razon_social'),

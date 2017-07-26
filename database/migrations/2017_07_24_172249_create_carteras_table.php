@@ -18,9 +18,9 @@ class CreateCarterasTable extends Migration
             $table->integer('id_proveedor')->unsigned();
             $table->integer('id_tipo_cartera')->unsigned();
             $table->string('cartera');
-            $table->integer('segmento')->unsigned();
             $table->foreign('id_proveedor')->references('id')->on('proveedores');
             $table->foreign('id_tipo_cartera')->references('id')->on('tipos_cartera');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

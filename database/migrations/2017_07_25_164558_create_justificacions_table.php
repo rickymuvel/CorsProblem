@@ -16,7 +16,7 @@ class CreateJustificacionsTable extends Migration
         Schema::create('justificaciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('justificacion')->unique();
-            $table->string('estado')->default("activo");
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

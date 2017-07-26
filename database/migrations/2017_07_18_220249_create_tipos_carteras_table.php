@@ -16,7 +16,7 @@ class CreateTiposCarterasTable extends Migration
         Schema::create('tipos_cartera', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_cartera')->unique();
-            $table->string('estado')->default('activo');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

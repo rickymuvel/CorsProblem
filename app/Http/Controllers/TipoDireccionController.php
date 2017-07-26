@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TipoDireccionController extends Controller
 {
-    public function getTiposDireccion(){
+    public function get(){
         try {
             $datos = TipoDireccion::all();
             return response()->json(["datos"=>$datos, "status"=>true], 201);
@@ -16,7 +16,7 @@ class TipoDireccionController extends Controller
         }
     }
 
-    public function setTipoDireccion(Request $request){
+    public function set(Request $request){
         try {
             $registro = new TipoDireccion();
             $registro->tipo_direccion = $request->input('tipo_direccion');
@@ -28,7 +28,7 @@ class TipoDireccionController extends Controller
         }
     }
 
-    public function updateTipoDireccion(Request $request){
+    public function update(Request $request){
         try {
             TipoDireccion::where('id', $request->input('id'))->update([
                 'tipo_direccion' => $request->input("tipo_direccion")

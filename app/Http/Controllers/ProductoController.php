@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
-    public function getProductos(){
+    public function get(){
         try {
             $datos = DB::select('call sp_getProductos()');
             return response()->json(["datos" => $datos, "status"=> true], 201);
@@ -18,7 +18,7 @@ class ProductoController extends Controller
 
     }
 
-    public function setProducto(Request $request){
+    public function set(Request $request){
         try {
             $prod = new Producto();
             $prod->producto = $request->input('producto');
@@ -31,7 +31,7 @@ class ProductoController extends Controller
         }
     }
 
-    public function updateProducto(Request $request){
+    public function update(Request $request){
 
     }
 }

@@ -16,7 +16,7 @@ class CreateTipoDireccionsTable extends Migration
         Schema::create('tipo_direcciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_direccion')->unique();
-            $table->string('estado')->default('activo');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

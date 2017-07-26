@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoResultadosTable extends Migration
+class CreateSegmentosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTipoResultadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_resultados', function (Blueprint $table) {
+        Schema::create('segmentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo_resultado')->unique();
-            $table->integer('peso');
-            $table->tinyInteger('estado')->default(1);
+            $table->string('nombre');
+            $table->integer('id_cartera')->unsigned();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTipoResultadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_resultados');
+        Schema::dropIfExists('segmentos');
     }
 }

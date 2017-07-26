@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoResultadosTable extends Migration
+class CreateProductoCarteraTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTipoResultadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_resultados', function (Blueprint $table) {
+        Schema::create('producto_cartera', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo_resultado')->unique();
-            $table->integer('peso');
+            $table->integer('id_producto')->unsigned();
+            $table->integer('id_cartera')->unsigned();
+            $table->foreign('id_producto')->references('id')->on('productos');
+            $table->foreign('id_cartera')->references('id')->on('carteras');
             $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
@@ -29,6 +31,6 @@ class CreateTipoResultadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_resultados');
+        Schema::dropIfExists('producto_cartera');
     }
 }
