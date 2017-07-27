@@ -18,8 +18,8 @@ class CreateResultadosTable extends Migration
             $table->string('resultado');
             $table->integer('id_tipo_resultado')->unsigned();
             $table->foreign('id_tipo_resultado')->references('id')->on('tipo_resultados');
-            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
+            $table->tinyInteger('estado')->default(1);
         });
     }
 

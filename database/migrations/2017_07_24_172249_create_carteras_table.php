@@ -20,8 +20,8 @@ class CreateCarterasTable extends Migration
             $table->string('cartera');
             $table->foreign('id_proveedor')->references('id')->on('proveedores');
             $table->foreign('id_tipo_cartera')->references('id')->on('tipos_cartera');
-            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
+            $table->tinyInteger('estado')->default(1);
         });
     }
 

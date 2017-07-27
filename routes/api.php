@@ -139,6 +139,11 @@ Route::put('/tipo-contacto', [
 Route::get('/cartera', [
     'uses' => 'CarteraController@get'
 ]);
+
+Route::get("/cartera/{id_cartera}", [
+    'uses' => 'CarteraController@getSegmentos'
+]);
+
 Route::post('/cartera', [
     'uses' => 'CarteraController@set'
 ]);
@@ -252,4 +257,16 @@ Route::post('/tipo-contacto-resultado', [
 ]);
 Route::put('/tipo-contacto-resultado', [
     'uses' => 'TipoContactoResultadoController@update'
+]);
+
+// Segmentos
+
+Route::get('/segmento', [
+    'uses' => 'SegmentoController@get'
+]);
+Route::post('/segmento', [
+    'uses' => 'SegmentoController@set'
+]);
+Route::put('/segmento', [
+    'uses' => 'SegmentoController@update'
 ]);

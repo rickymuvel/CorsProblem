@@ -17,8 +17,8 @@ class CreateTipoResultadosTable extends Migration
             $table->increments('id');
             $table->string('tipo_resultado')->unique();
             $table->integer('peso');
-            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
+            $table->tinyInteger('estado')->default(1);
         });
     }
 
