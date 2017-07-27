@@ -20,13 +20,13 @@ class CreateEquipoTrabajoCarterasTable extends Migration
             $table->integer('id_perfil')->unsigned();
             $table->integer('id_equipo')->unsigned();
             $table->integer('id_segmento')->unsigned();
-
             $table->foreign('id_proveedor')->references('id')->on('proveedores');
-            $table->integer('id_cartera')->references('id')->on('carteras');
-            $table->integer('id_perfil')->references('id')->on('perfiles');
-            $table->integer('id_equipo')->references('id')->on('equipos');
-            $table->integer('id_segmento')->references('id')->on('segmentos');
+            $table->foreign('id_cartera')->references('id')->on('carteras');
+            $table->foreign('id_perfil')->references('id')->on('perfiles');
+            $table->foreign('id_equipo')->references('id')->on('equipos_trabajo');
+            $table->foreign('id_segmento')->references('id')->on('segmentos');
             $table->timestamps();
+            $table->tinyInteger('estado')->default(1);
         });
     }
 

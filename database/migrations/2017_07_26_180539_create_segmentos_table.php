@@ -17,7 +17,9 @@ class CreateSegmentosTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->integer('id_cartera')->unsigned();
+            $table->foreign('id_cartera')->references('id')->on('carteras');
             $table->timestamps();
+            $table->tinyInteger('estado')->default(1);
         });
     }
 

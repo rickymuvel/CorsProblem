@@ -15,7 +15,16 @@ class CreatePaletaResultadosTable extends Migration
     {
         Schema::create('paleta_resultados', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_proveedor')->unsigned();
+            $table->integer('id_cartera')->unsigned();
+            $table->integer('id_resultado')->unsigned();
+            $table->integer('id_justificacion')->unsigned();
+            $table->foreign('id_proveedor')->references('id')->on('proveedores');
+            $table->foreign('id_cartera')->references('id')->on('carteras');
+            $table->foreign('id_resultado')->references('id')->on('resultados');
+            $table->foreign('id_justificacion')->references('id')->on('justificaciones');
             $table->timestamps();
+            $table->tinyInteger('estado')->default(1);
         });
     }
 

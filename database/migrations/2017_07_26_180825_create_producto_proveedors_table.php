@@ -13,9 +13,14 @@ class CreateProductoProveedorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('producto_proveedors', function (Blueprint $table) {
+        Schema::create('producto_proveedores', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_producto')->unsigned();
+            $table->integer('id_proveedor')->unsigned();
+            $table->foreign('id_producto')->references('id')->on('productos');
+            $table->foreign('id_proveedor')->references('id')->on('proveedores');
             $table->timestamps();
+            $table->tinyInteger('estado')->default(1);
         });
     }
 
@@ -26,6 +31,6 @@ class CreateProductoProveedorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('producto_proveedors');
+        Schema::dropIfExists('producto_proveedores');
     }
 }

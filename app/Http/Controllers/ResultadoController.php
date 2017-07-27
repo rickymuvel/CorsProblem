@@ -28,7 +28,7 @@ class ResultadoController extends Controller
             return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
         }
     }
-
+    
     public function update(Request $request){
         try {
             Resultado::where('id', $request->input('id'))->update([
