@@ -12,14 +12,11 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
 
+$factory->define(App\Perfil::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'perfil' => $faker->unique()->randomElement(array('Admin', 'Jefe de cuenta', 'Call Center', 'Developer')),
+        'estado' => $faker->randomElement(array('activo'))
     ];
 });
 
@@ -47,16 +44,115 @@ $factory->define(App\Usuario::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Proveedor::class, function (Faker\Generator $faker) {
+
+$factory->define(App\Rubro::class, function (Faker\Generator $faker) {
     return [
-        "razon_social" => $faker->company,
-        "ruc" => $faker->randomNumber(9),
-        "rubro" => $faker->randomElement(array("Carpintero", "Electricista", "Gasfitero", "Plomero", "Analista de sistemas", "Programador", "Diseñador", "Modelador")),
-        "telefono1" => $faker->phoneNumber,
-        "telefono2" => $faker->phoneNumber,
-        "telefono3" => $faker->phoneNumber,
-        "representante" => $faker->name,
-        "contacto" => $faker->name,
-        "telf_contacto" => $faker->phoneNumber
+        'nombre' => $faker->unique()->randomElement(array('Marketing', 'Informática', 'Soporte', 'Cobranzas', 'Todista', 'Carpintería', 'Zapatería')),
+        'descripcion' => $faker->text
     ];
 });
+
+$factory->define(App\Proveedor::class, function (Faker\Generator $faker) {
+    return [
+        'razon_social' => $faker->company,
+        'ruc' => $faker->unique()->randomNumber(8)."".$faker->randomNumber(3),
+        'id_rubro' => $faker->randomElement(array(1,2,3,4,5,6,7)),
+        'telefono1' => $faker->randomNumber(9),
+        'telefono2' => $faker->randomNumber(9),
+        'telefono3' => $faker->randomNumber(7),
+        'representante' => $faker->name,
+        'contacto' => $faker->name,
+        'telf_contacto' => $faker->randomNumber(9)
+    ];
+});
+
+$factory->define(App\TiposProducto::class, function (Faker\Generator $faker) {
+    return [
+        'tipo_producto' => $faker->unique()->randomElement(array('Consumo', 'Masiva', 'Mype', 'Hipotecario', 'Tarjeta de crédito'))
+    ];
+});
+
+$factory->define(App\Producto::class, function (Faker\Generator $faker) {
+    return [
+        'producto' => $faker->unique()->randomElement(array('Visa', 'Mastercard', 'Préstamo personal', 'Préstamo Hipotecario', 'Libre consumo')),
+        'id_tipo_producto' => $faker->randomElement(array(1,2,3,4,5))
+    ];
+});
+
+$factory->define(App\Modelos\TipoResultados::class, function (Faker\Generator $faker) {
+    return [
+        'tipo_resultado' => $faker->unique()->randomElement(array('Contacto Directo', 'Contacto Indirecto', 'Contacto Efectivo', 'No contacto', 'Ilocalizado', 'No llamar')),
+        'peso' => $faker->randomElement(array(5,6,7,8,9,3))
+    ];
+});
+
+$factory->define(App\Modelos\Resultado::class, function (Faker\Generator $faker) {
+    return [
+        'id_tipo_resultado' => $faker->randomElement(array(1,2,3,4,5)),
+        'resultado' => $faker->unique()->randomElement(array('Ya pagó', 'Promesa de pago', 'Motivo de no pago', 'Desacuerdo', 'Se dejó mensaje', 'No se deja mensaje', 'Fallecido', 'Teléfono errado', 'Colgó'))
+    ];
+});
+
+$factory->define(App\Justificacion::class, function (Faker\Generator $faker) {
+    return [
+        'justificacion' => $faker->unique()->randomElement(array('PKM-REF pendiente ajuste', 'Pago Mora Total', 'Establecimiento afiliado', 'Envio voucher por correo'))
+    ];
+});
+
+$factory->define(App\EquipoTrabajo::class, function (Faker\Generator $faker) {
+    return [
+        'equipo_trabajo' => $faker->unique()->colorName
+    ];
+});
+
+$factory->define(App\TipoDireccion::class, function (Faker\Generator $faker) {
+    return [
+        'tipo_direccion' => $faker->unique()->randomElement(array('Domicilio', 'Laboral', 'Sunat', 'Legal'))
+    ];
+});
+
+
+
+
+//$factory->define(App\Cartera::class, function (Faker\Generator $faker) {
+//    return [
+//        'id_proveedor' => $faker->randomElement(array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)),
+//        'id_tipo_cartera' => $faker->randomElement(array('1','2','3','4','5','6','7')),
+//        'cartera' => $faker->slug
+//    ];
+//});
+
+
+//$factory->define(App\Modelos\TiposCartera::class, function (Faker\Generator $faker) {
+//    return [
+//        'tipo_cartera' => $faker->unique()->randomElement(array('Vigente', 'Castigada', 'Judicial', 'Especial', 'Provincia', 'Judicial', 'Big ticket'))
+//    ];
+//});
+
+
+//$factory->define(App\User::class, function (Faker\Generator $faker) {
+//    static $password;
+//
+//    return [
+//        'name' => $faker->name,
+//        'email' => $faker->unique()->safeEmail,
+//        'password' => $password ?: $password = bcrypt('secret'),
+//        'remember_token' => str_random(10),
+//    ];
+//});
+
+
+
+//$factory->define(App\Proveedor::class, function (Faker\Generator $faker) {
+//    return [
+//        "razon_social" => $faker->company,
+//        "ruc" => $faker->randomNumber(9),
+//        "rubro" => $faker->randomElement(array("Carpintero", "Electricista", "Gasfitero", "Plomero", "Analista de sistemas", "Programador", "Diseñador", "Modelador")),
+//        "telefono1" => $faker->phoneNumber,
+//        "telefono2" => $faker->phoneNumber,
+//        "telefono3" => $faker->phoneNumber,
+//        "representante" => $faker->name,
+//        "contacto" => $faker->name,
+//        "telf_contacto" => $faker->phoneNumber
+//    ];
+//});

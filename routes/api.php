@@ -270,3 +270,15 @@ Route::post('/segmento', [
 Route::put('/segmento', [
     'uses' => 'SegmentoController@update'
 ]);
+
+// Relacion Equipo de Trabajo
+
+Route::get('/relacion-equipo-trabajo', [
+    'uses' => 'EquipoTrabajoController@get'
+]);
+Route::post('/relacion-equipo-trabajo', [
+    'uses' => 'EquipoTrabajoController@set'
+]);
+Route::put('/relacion-equipo-trabajo', [
+    'uses' => 'EquipoTrabajoController@update'
+]);
