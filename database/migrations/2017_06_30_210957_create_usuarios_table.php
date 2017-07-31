@@ -36,7 +36,7 @@ class CreateUsuariosTable extends Migration
             $table->string("turno");
             $table->rememberToken();
             $table->timestamps();
-            $table->tinyInteger('estado')->default(1);
+            $table->string('estado', 8)->default("activo");
         });
     }
 

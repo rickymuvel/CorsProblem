@@ -19,7 +19,7 @@ class CreateTipoContactoResultadosTable extends Migration
             $table->integer('id_tipo_contacto')->unsigned();
             $table->foreign('id_tipo_contacto')->references('id')->on('tipos_contacto');
             $table->timestamps();
-            $table->tinyInteger('estado')->default(1);
+            $table->string('estado', 8)->default("activo");
         });
     }
 

@@ -17,7 +17,7 @@ class CreateTiposCarterasTable extends Migration
             $table->increments('id');
             $table->string('tipo_cartera')->unique();
             $table->timestamps();
-            $table->tinyInteger('estado')->default(1);
+            $table->string('estado', 8)->default("activo");
         });
     }
 

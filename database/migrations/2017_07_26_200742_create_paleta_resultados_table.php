@@ -24,7 +24,7 @@ class CreatePaletaResultadosTable extends Migration
             $table->foreign('id_resultado')->references('id')->on('resultados');
             $table->foreign('id_justificacion')->references('id')->on('justificaciones');
             $table->timestamps();
-            $table->tinyInteger('estado')->default(1);
+            $table->string('estado', 8)->default("activo");
         });
     }
 

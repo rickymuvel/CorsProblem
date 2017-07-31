@@ -17,7 +17,7 @@ class CreateJustificacionsTable extends Migration
             $table->increments('id');
             $table->string('justificacion')->unique();
             $table->timestamps();
-            $table->tinyInteger('estado')->default(1);
+            $table->string('estado', 8)->default("activo");
         });
     }
 

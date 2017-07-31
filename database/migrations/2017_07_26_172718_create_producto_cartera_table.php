@@ -19,8 +19,8 @@ class CreateProductoCarteraTable extends Migration
             $table->integer('id_cartera')->unsigned();
             $table->foreign('id_producto')->references('id')->on('productos');
             $table->foreign('id_cartera')->references('id')->on('carteras');
-            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
+            $table->string('estado', 8)->default("activo");
         });
     }
 
