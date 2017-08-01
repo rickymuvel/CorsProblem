@@ -282,3 +282,15 @@ Route::post('/relacion-equipo-trabajo', [
 Route::put('/relacion-equipo-trabajo', [
     'uses' => 'EquipoTrabajoController@update'
 ]);
+
+// Relacion Equipo de Trabajo - Cartera
+
+Route::get('/relacion-equipo-trabajo-cartera', [
+    'uses' => 'EquipoTrabajoCarteraController@get'
+]);
+Route::post('/relacion-equipo-trabajo-cartera', [
+    'uses' => 'EquipoTrabajoCarteraController@set'
+]);
+Route::put('/relacion-equipo-trabajo-cartera', [
+    'uses' => 'EquipoTrabajoCarteraController@update'
+]);

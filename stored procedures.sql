@@ -93,3 +93,64 @@ END $$
 DELIMITER ;
 
 #call sp_getSegmentos()
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getEqTrabajoCartera` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getEqTrabajoCartera`()
+BEGIN
+  SELECT 
+	etc.*,
+    ca.cartera,
+    et.equipo_trabajo as equipo,
+    pe.perfil,
+    concat_ws(us.nombres, us.ap_paterno, us.ap_materno) as responsable,
+    pr.razon_social as proveedor,
+    se.nombre as segmento
+  FROM equipo_trabajo_cartera etc 
+		INNER JOIN equipos_trabajo et ON etc.id_equipo=et.id
+        INNER JOIN usuarios us ON etc.id_usuario=us.id
+		INNER JOIN carteras ca ON etc.id_cartera=ca.id
+        INNER JOIN perfiles pe ON etc.id_perfil=pe.id
+        INNER JOIN proveedores pr ON etc.id_proveedor=pr.id
+        INNER JOIN segmentos se ON etc.id_segmento=se.id;
+END $$
+DELIMITER ;
+
+
+/*
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getEqTrabajoCartera` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getEqTrabajoCartera`(
+	 IN _id_cartera char(10),
+     IN _id_equipo char(10),
+     IN _id_usuario char(10),
+     IN _id_perfil char(10),
+     IN _id_proveedor char(10),
+     IN _id_segmento char(10)     
+)
+BEGIN
+  SELECT 
+	etc.*,
+    ca.cartera,
+    et.equipo_trabajo as equipo,
+    pe.perfil,
+    pr.razon_social as proveedor,
+    se.nombre as segmento
+  FROM equipo_trabajo_cartera etc 
+		INNER JOIN equipos_trabajo et ON etc.id_equipo=et.id
+        INNER JOIN usuarios us ON etc.id_usuario=_us.id
+		INNER JOIN carteras ca ON etc.id_cartera=ca.id
+        INNER JOIN perfiles pe ON etc.id_perfil=pe.id
+        INNER JOIN proveedores pr ON etc.id_proveedor=pr.id
+        INNER JOIN segmentos se ON etc.id_segmento=se.id
+  WHERE 
+		etc.id_cartera = _id_cartera and
+        etc.id_usuario = _id_usuario and
+        etc.id_equipo = _id_equipo and
+        etc.id_perfil = _id_perfil and
+        etc.id_proveedor = _id_proveedor and
+        etc.id_segmento = _id_segmento;
+END $$
+DELIMITER ;
+*/

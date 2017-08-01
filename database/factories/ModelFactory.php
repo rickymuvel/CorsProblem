@@ -111,6 +111,22 @@ $factory->define(App\TipoDireccion::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\EquipoTrabajoCartera::class, function (Faker\Generator $faker) {
+    return [
+        'id_proveedor' => $faker->randomElement(array(1,5,7,8,9,10,14,20,25,23,22,15,13,12,11,6,4,3,2)),
+        'id_cartera' => $faker->randomElement(array(1,2,3,4)),
+        'id_perfil' => $faker->randomElement(array(1,2,3,4)),
+        'id_usuario' => $faker->randomElement(array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)),
+        'id_equipo' => $faker->randomElement(array(1,5,6,8,7,4,9,15,11,2,12,13,14,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)),
+        'id_segmento' => $faker->randomElement(array(1,2,3,4))
+    ];
+});
+
+
+
+
+
+
 
 
 

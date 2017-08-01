@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         foreach ($this->carteras as $elemento) {
             $this->insertCarteras($elemento);
         }
+
         factory('App\TiposProducto', 5)->create();
         factory('App\Producto', 5)->create();
         factory('App\Modelos\TipoResultados', 6)->create();
@@ -40,11 +41,12 @@ class DatabaseSeeder extends Seeder
         factory('App\Justificacion', 4)->create();
         factory('App\EquipoTrabajo', 35)->create();
         factory('App\TipoDireccion', 4)->create();
-        factory('App\Modelos\TipoTelefono', 4)->create();
+//        factory('App\Modelos\TipoTelefono', 4)->create();
 
         foreach ($this->tipo_telefono as $element) {
             $this->insertTipoTelefono($element);
         }
+        factory('App\EquipoTrabajoCartera', 20)->create();
         Model::reguard();
     }
 
