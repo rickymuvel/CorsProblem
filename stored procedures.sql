@@ -94,6 +94,18 @@ DELIMITER ;
 
 #call sp_getSegmentos()
 
+#sp_getResultados
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getResultados` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getResultados`()
+BEGIN
+  SELECT r.*, tr.tipo_resultado 
+  FROM resultados r 
+  INNER JOIN tipo_resultados tr 
+		ON r.id_tipo_resultado=tr.id;
+END $$
+DELIMITER ;
+
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getEqTrabajoCartera` $$
@@ -114,6 +126,61 @@ BEGIN
         INNER JOIN perfiles pe ON etc.id_perfil=pe.id
         INNER JOIN proveedores pr ON etc.id_proveedor=pr.id
         INNER JOIN segmentos se ON etc.id_segmento=se.id;
+END $$
+DELIMITER ;
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getProductoCartera` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getProductoCartera`()
+BEGIN
+  SELECT pc.*, p.producto, pr.razon_social, ca.cartera
+	FROM producto_cartera pc 
+	INNER JOIN productos p ON pc.id_producto=p.id
+    INNER JOIN proveedores pr ON pc.id_proveedor=pr.id
+    INNER JOIN carteras ca ON pc.id_cartera=ca.id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getProductoProveedor` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getProductoProveedor`()
+BEGIN
+  SELECT pp.*, p.producto, pr.razon_social
+	FROM producto_proveedores pp
+	INNER JOIN productos p ON pp.id_producto=p.id
+    INNER JOIN proveedores pr ON pp.id_proveedor=pr.id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `sp_getTipoContactoResultado` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getTipoContactoResultado`()
+BEGIN
+  SELECT tcr.*, r.resultado, tc.tipo_contacto
+	FROM tipo_contacto_resultados tcr
+	INNER JOIN resultados r ON tcr.id_resultado=r.id
+    INNER JOIN tipos_contacto tc ON tcr.id_tipo_contacto=tc.id;
+END $$
+DELIMITER ;
+
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `sp_getPaletaResultados` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getPaletaResultados`()
+BEGIN
+  SELECT pr.*, 
+	  p.razon_social,
+	  c.cartera,
+	  r.resultado,
+	  j.justificacion
+  FROM paleta_resultados pr
+  INNER JOIN proveedores p ON pr.id_proveedor=p.id
+  INNER JOIN carteras c ON pr.id_cartera=c.id
+  INNER JOIN resultados r ON pr.id_resultado=r.id
+  INNER JOIN justificaciones j ON pr.id_justificacion=j.id;
 END $$
 DELIMITER ;
 

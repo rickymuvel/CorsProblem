@@ -144,6 +144,10 @@ Route::get("/cartera/{id_cartera}", [
     'uses' => 'CarteraController@getSegmentos'
 ]);
 
+Route::get("/cartera/proveedor/{id_proveedor}", [
+    'uses' => 'CarteraController@getCarterasxProveedor'
+]);
+
 Route::post('/cartera', [
     'uses' => 'CarteraController@set'
 ]);
@@ -293,4 +297,64 @@ Route::post('/relacion-equipo-trabajo-cartera', [
 ]);
 Route::put('/relacion-equipo-trabajo-cartera', [
     'uses' => 'EquipoTrabajoCarteraController@update'
+]);
+
+// Relacion Producto - Cartera
+
+Route::get('/relacion-producto-cartera', [
+    'uses' => 'ProductoCarteraController@get'
+]);
+Route::post('/relacion-producto-cartera', [
+    'uses' => 'ProductoCarteraController@set'
+]);
+Route::put('/relacion-producto-cartera', [
+    'uses' => 'ProductoCarteraController@update'
+]);
+
+// Relacion Producto - Proveedor
+
+Route::get('/relacion-producto-proveedor', [
+    'uses' => 'ProductoProveedorController@get'
+]);
+Route::post('/relacion-producto-proveedor', [
+    'uses' => 'ProductoProveedorController@set'
+]);
+Route::put('/relacion-producto-proveedor', [
+    'uses' => 'ProductoProveedorController@update'
+]);
+
+// Relacion Producto - Proveedor
+
+Route::get('/relacion-tipo-contacto-resultado', [
+    'uses' => 'TipoContactoResultadoController@get'
+]);
+Route::post('/relacion-tipo-contacto-resultado', [
+    'uses' => 'TipoContactoResultadoController@set'
+]);
+Route::put('/relacion-tipo-contacto-resultado', [
+    'uses' => 'TipoContactoResultadoController@update'
+]);
+
+// Relacion Tipo de contacto - resultado
+
+Route::get('/relacion-tipo-contacto-resultado', [
+    'uses' => 'TipoContactoResultadoController@get'
+]);
+Route::post('/relacion-tipo-contacto-resultado', [
+    'uses' => 'TipoContactoResultadoController@set'
+]);
+Route::put('/relacion-tipo-contacto-resultado', [
+    'uses' => 'TipoContactoResultadoController@update'
+]);
+
+// Paleta de Resultados
+
+Route::get('/paleta-resultados', [
+    'uses' => 'PaletaResultadoController@get'
+]);
+Route::post('/paleta-resultados', [
+    'uses' => 'PaletaResultadoController@set'
+]);
+Route::put('/paleta-resultados', [
+    'uses' => 'PaletaResultadoController@update'
 ]);

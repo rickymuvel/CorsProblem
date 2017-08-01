@@ -15,9 +15,10 @@ class CreateTipoContactoResultadosTable extends Migration
     {
         Schema::create('tipo_contacto_resultados', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('resultado');
+            $table->integer('id_resultado')->unsigned();
             $table->integer('id_tipo_contacto')->unsigned();
             $table->foreign('id_tipo_contacto')->references('id')->on('tipos_contacto');
+            $table->foreign('id_resultado')->references('id')->on('resultados');
             $table->timestamps();
             $table->string('estado', 8)->default("activo");
         });

@@ -41,12 +41,16 @@ class DatabaseSeeder extends Seeder
         factory('App\Justificacion', 4)->create();
         factory('App\EquipoTrabajo', 35)->create();
         factory('App\TipoDireccion', 4)->create();
-//        factory('App\Modelos\TipoTelefono', 4)->create();
 
         foreach ($this->tipo_telefono as $element) {
             $this->insertTipoTelefono($element);
         }
         factory('App\EquipoTrabajoCartera', 20)->create();
+        factory('App\Modelos\TipoContacto', 8)->create();
+        factory('App\ProductoCartera', 25)->create(); //<-- Esta línea dío problemas
+        factory('App\Modelos\ProductoProveedor', 25)->create();
+        factory('App\TipoContactoResultado', 9)->create();
+        factory('App\PaletaResultado', 50)->create();
         Model::reguard();
     }
 

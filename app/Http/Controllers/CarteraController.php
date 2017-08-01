@@ -28,6 +28,16 @@ class CarteraController extends Controller
         }
     }
 
+    // Obtener segmentos de una determinada cartera.
+    public function getCarterasxProveedor($id_proveedor){
+        try {
+            $listado = Cartera::where('id_proveedor', $id_proveedor)->get();
+            return response()->json(["datos"=>$listado, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);
+        }
+    }
+
     public function set(Request $request){
         try {
             $cartera = new Cartera();

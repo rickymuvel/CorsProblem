@@ -32,7 +32,7 @@ class ProveedorController extends Controller
             $proveedor->contacto = $request->input('contacto');
             $proveedor->telf_contacto = $request->input('telf_contacto');
             $proveedor->save();
-            $datos = Proveedor::all();
+            $datos = DB::select('call sp_getProveedores()');
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch (\Exception $e){
             return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);

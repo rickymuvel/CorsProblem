@@ -122,7 +122,51 @@ $factory->define(App\EquipoTrabajoCartera::class, function (Faker\Generator $fak
     ];
 });
 
+$factory->define(App\Modelos\TipoContacto::class, function (Faker\Generator $faker) {
+    return [
+        'tipo_contacto' => $faker->unique()->randomElement(array('Titular', 'Familiar', 'Conyuge', 'Padre', 'Hijo', 'Amistad', 'Vecino', 'Compañero de trabajo'))
+    ];
+});
 
+$factory->define(App\ProductoCartera::class, function (Faker\Generator $faker) {
+    return [
+        'id_proveedor' => $faker->randomElement(array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)),
+        'id_producto' => $faker->randomElement(array(1,2,3,4,5)),
+        'id_cartera' => $faker->randomElement(array(1,2,3,4))
+    ];
+});
+
+$factory->define(App\Modelos\ProductoProveedor::class, function (Faker\Generator $faker) {
+    return [
+        'id_proveedor' => $faker->randomElement(array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)),
+        'id_producto' => $faker->randomElement(array(1,2,3,4,5))
+    ];
+});
+
+$factory->define(App\TipoContactoResultado::class, function (Faker\Generator $faker) {
+    return [
+        'id_resultado' => $faker->unique()->randomElement(array(1,2,3,4,5,6,7,8,9)),
+        'id_tipo_contacto' => $faker->randomElement(array(1,2,3,4,5,6,7,8))
+    ];
+});
+
+$factory->define(App\PaletaResultado::class, function (Faker\Generator $faker) {
+    return [
+        'id_proveedor' => $faker->randomElement(array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)),
+        'id_cartera' => $faker->randomElement(array(1,2,3,4)),
+        'id_resultado' => $faker->randomElement(array(1,2,3,4,5,6,7,8,9)),
+        'id_justificacion' => $faker->randomElement(array(1,2,3,4))
+    ];
+});
+
+//$factory->define(App\PaletaResultado::class, function (Faker\Generator $faker) {
+//    return [
+//        'id_proveedor' => $faker->randomElement(array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)),
+//        'id_cartera' => $faker->randomElement(array(1,2,3,4,5,6,7,8)),
+//        'id_resultado' => $faker->randomElement(array()),
+//        'id_justificacion' => $faker->randomElement(array())
+//    ];
+//});
 
 
 

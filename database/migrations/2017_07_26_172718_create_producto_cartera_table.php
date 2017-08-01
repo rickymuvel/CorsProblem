@@ -15,8 +15,10 @@ class CreateProductoCarteraTable extends Migration
     {
         Schema::create('producto_cartera', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_proveedor')->unsigned();
             $table->integer('id_producto')->unsigned();
             $table->integer('id_cartera')->unsigned();
+            $table->foreign('id_proveedor')->references('id')->on('proveedores');
             $table->foreign('id_producto')->references('id')->on('productos');
             $table->foreign('id_cartera')->references('id')->on('carteras');
             $table->timestamps();

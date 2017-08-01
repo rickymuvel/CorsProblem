@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Modelos\Resultado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ResultadoController extends Controller
 {
     public function get(){
         try {
-            $datos = Resultado::all();
+            $datos = DB::select("call sp_getResultados()");
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch (\Exception $e){
             return response()->json(["msj"=>$e->getMessage(), "status"=>false], 201);
