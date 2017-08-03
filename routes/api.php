@@ -35,6 +35,10 @@ Route::post('/ubigeo', [
 Route::get('/usuario', [
     'uses' => 'UsuarioController@get'
 ]);
+
+Route::get("/usuario/perfiles/{id_perfil}", [
+    'uses' => 'UsuarioController@getUsuariosxPerfil'
+]);
 Route::post('/usuario', [
     'uses' => 'UsuarioController@set'
 ]);
@@ -267,6 +271,9 @@ Route::put('/tipo-contacto-resultado', [
 
 Route::get('/segmento', [
     'uses' => 'SegmentoController@get'
+]);
+Route::get('/segmento/carteras/{id_cartera}', [
+    'uses' => 'SegmentoController@getSegmentosxCartera'
 ]);
 Route::post('/segmento', [
     'uses' => 'SegmentoController@set'

@@ -72,12 +72,20 @@ class UsuarioController extends Controller
             $editado = false;
             $msj = $e->getMessage();
         }
-
         return response()->json(["editado"=>$editado, "msj"=> $msj], 201);
     }
 
     public function get(){
         $consulta = DB::select('call sp_getUsuarios()');
         return response()->json(["usuarios"=>$consulta], 201);
+    }
+
+    public function getUsuariosxPerfil($id_perfil){
+        try {
+            $listado = Usuario::where('id_perfil', $id_perfil)->get();
+            return response()->json(["datos"=>$listado, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);
+        }
     }
 }

@@ -16,6 +16,16 @@ class SegmentoController extends Controller
             return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);
         }
     }
+
+    public function getSegmentosxCartera($id_cartera){
+        try {
+            $datos= Segmento::where('id_cartera', $id_cartera)->get();
+            return response()->json(["datos"=>$datos, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);
+        }
+    }
+
     public function set(Request $request){
         try {
             $obj = new Segmento();

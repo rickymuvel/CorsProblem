@@ -125,10 +125,12 @@ BEGIN
 		INNER JOIN carteras ca ON etc.id_cartera=ca.id
         INNER JOIN perfiles pe ON etc.id_perfil=pe.id
         INNER JOIN proveedores pr ON etc.id_proveedor=pr.id
-        INNER JOIN segmentos se ON etc.id_segmento=se.id;
+        INNER JOIN segmentos se ON etc.id_segmento=se.id
+  ORDER BY etc.id ASC;
 END $$
 DELIMITER ;
 
+/*call sp_getEqTrabajoCartera()*/
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getProductoCartera` $$
@@ -138,7 +140,8 @@ BEGIN
 	FROM producto_cartera pc 
 	INNER JOIN productos p ON pc.id_producto=p.id
     INNER JOIN proveedores pr ON pc.id_proveedor=pr.id
-    INNER JOIN carteras ca ON pc.id_cartera=ca.id;
+    INNER JOIN carteras ca ON pc.id_cartera=ca.id
+	ORDER BY pc.id ASC;
 END $$
 DELIMITER ;
 
@@ -149,7 +152,8 @@ BEGIN
   SELECT pp.*, p.producto, pr.razon_social
 	FROM producto_proveedores pp
 	INNER JOIN productos p ON pp.id_producto=p.id
-    INNER JOIN proveedores pr ON pp.id_proveedor=pr.id;
+    INNER JOIN proveedores pr ON pp.id_proveedor=pr.id
+ ORDER BY pp.id ASC;
 END $$
 DELIMITER ;
 
@@ -161,7 +165,8 @@ BEGIN
   SELECT tcr.*, r.resultado, tc.tipo_contacto
 	FROM tipo_contacto_resultados tcr
 	INNER JOIN resultados r ON tcr.id_resultado=r.id
-    INNER JOIN tipos_contacto tc ON tcr.id_tipo_contacto=tc.id;
+    INNER JOIN tipos_contacto tc ON tcr.id_tipo_contacto=tc.id
+  ORDER BY tcr.id ASC;
 END $$
 DELIMITER ;
 
@@ -180,12 +185,15 @@ BEGIN
   INNER JOIN proveedores p ON pr.id_proveedor=p.id
   INNER JOIN carteras c ON pr.id_cartera=c.id
   INNER JOIN resultados r ON pr.id_resultado=r.id
-  INNER JOIN justificaciones j ON pr.id_justificacion=j.id;
+  INNER JOIN justificaciones j ON pr.id_justificacion=j.id
+  ORDER BY pr.id ASC;
 END $$
 DELIMITER ;
 
+select * from paleta_resultados
 
 /*
+select * from equipo_trabajo_cartera
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getEqTrabajoCartera` $$
 CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getEqTrabajoCartera`(
@@ -220,4 +228,7 @@ BEGIN
         etc.id_segmento = _id_segmento;
 END $$
 DELIMITER ;
+
+call sp_getProductoCartera()
+
 */
