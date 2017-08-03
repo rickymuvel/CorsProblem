@@ -365,3 +365,16 @@ Route::post('/paleta-resultados', [
 Route::put('/paleta-resultados', [
     'uses' => 'PaletaResultadoController@update'
 ]);
+
+// Carga de asignacion
+
+Route::get('/cargar-asignacion', [
+    'uses' => 'CargarAsignacionController@get'
+]);
+Route::post('/cargar-asignacion', [
+    'uses' => 'CargarAsignacionController@set'
+]);
+Route::put('/cargar-asignacion', [
+    'uses' => 'CargarAsignacionController@update'
+]);
+

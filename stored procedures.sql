@@ -11,7 +11,7 @@ BEGIN
 	CONCAT(ub.dpto, "/", ub.prov, "/", ub.dist) as distrito, ub.idubigeo as ubigeo 
   FROM ubigeo ub
   INNER JOIN usuarios us ON  ub.idubigeo=us.idubigeo
-  INNER JOIN perfiles per ON us.id_perfil=per.id;
+  INNER JOIN perfiles per ON us.id_perfil=per.id ORDER BY us.id ASC;
 END $$
 DELIMITER ;
 
@@ -29,7 +29,7 @@ BEGIN
   FROM ubigeo ub
 	INNER JOIN usuarios us ON  ub.idubigeo=us.idubigeo
 	INNER JOIN perfiles per ON us.id_perfil=per.id
-  WHERE us.id=_id_usuario;
+  WHERE us.id=_id_usuario ORDER BY us.id ASC;
 END $$
 DELIMITER ;
 
@@ -42,7 +42,7 @@ BEGIN
   SELECT 
 	p.*, r.nombre as rubro
   FROM 
-	proveedores p INNER JOIN rubros r ON p.id_rubro=r.id;
+	proveedores p INNER JOIN rubros r ON p.id_rubro=r.id ORDER BY p.id ASC;
 		
 END $$
 DELIMITER ;
@@ -60,7 +60,7 @@ BEGIN
   FROM 
 	proveedores p 
     INNER JOIN carteras c ON p.id = c.id_proveedor
-    INNER JOIN tipos_cartera tc ON c.id_tipo_cartera=tc.id;
+    INNER JOIN tipos_cartera tc ON c.id_tipo_cartera=tc.id ORDER BY c.id ASC;
 		
 END $$
 DELIMITER ;
@@ -76,7 +76,7 @@ BEGIN
 	p.*, tp.tipo_producto
   FROM 
 	productos p 
-    INNER JOIN tipo_productos tp ON p.id_tipo_producto=tp.id;
+    INNER JOIN tipo_productos tp ON p.id_tipo_producto=tp.id ORDER BY p.id ASC;
 		
 END $$
 DELIMITER ;
@@ -87,7 +87,7 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getSegmentos` $$
 CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getSegmentos`()
 BEGIN
-  SELECT s.*, c.cartera FROM segmentos s INNER JOIN carteras c ON s.id_cartera=c.id;
+  SELECT s.*, c.cartera FROM segmentos s INNER JOIN carteras c ON s.id_cartera=c.id ORDER BY s.id ASC;
 		
 END $$
 DELIMITER ;
@@ -102,7 +102,8 @@ BEGIN
   SELECT r.*, tr.tipo_resultado 
   FROM resultados r 
   INNER JOIN tipo_resultados tr 
-		ON r.id_tipo_resultado=tr.id;
+		ON r.id_tipo_resultado=tr.id
+  ORDER BY r.id ASC;
 END $$
 DELIMITER ;
 
@@ -190,7 +191,6 @@ BEGIN
 END $$
 DELIMITER ;
 
-select * from paleta_resultados
 
 /*
 select * from equipo_trabajo_cartera
