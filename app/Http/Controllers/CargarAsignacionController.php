@@ -12,7 +12,7 @@ class CargarAsignacionController extends Controller
 //            $listado = DB::select('call sp_getSegmentos()');
 //            return response()->json([ "datos" => $listado, "status" => true], 201);
         }catch(\Exception $e){
-            return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);
+            return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false ], 201);
         }
     }
 
@@ -20,7 +20,8 @@ class CargarAsignacionController extends Controller
         try {
 
             $path = $request->file('archivo')->store('edwin');
-            return $path;
+            return response()->json([ "datos" => $path, "status" => true], 201);
+//            return $path;
 //            return response()->json(["respuesta" => $request->input("archivo")]);
 //            $obj = new Segmento();
 //            $obj->nombre = $request->input('nombre');
