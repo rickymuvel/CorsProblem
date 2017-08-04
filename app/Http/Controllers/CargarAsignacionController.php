@@ -18,9 +18,11 @@ class CargarAsignacionController extends Controller
 
     public function set(Request $request){
         try {
-
-            $path = $request->file('archivo')->store('edwin');
-            return response()->json([ "datos" => $path, "status" => true], 201);
+            if($request->file('archivo')->getMimeType()=="text/plain"){
+                $path = $request->file('archivo')->store('archivos');
+                return response()->json(["datos"=>$path, "status" => true], 201);
+            }
+//            return response()->json([ "datos" => $path, "status" => true], 201);
 //            return $path;
 //            return response()->json(["respuesta" => $request->input("archivo")]);
 //            $obj = new Segmento();
