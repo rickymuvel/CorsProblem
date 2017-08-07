@@ -20,7 +20,7 @@ class CargarAsignacionController extends Controller
         try {
             if($request->file('archivo')->getMimeType()=="text/plain"){
                 $path = $request->file('archivo')->store('archivos');
-                return response()->json(["datos"=>$path, "status" => true], 201);
+                return response()->json(["url"=>$path, "status" => true], 201);
             }
 //            return response()->json([ "datos" => $path, "status" => true], 201);
 //            return $path;

@@ -13,8 +13,10 @@ class CreateCargaAsignacionValidacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('carga_asignacion_validacions', function (Blueprint $table) {
+        Schema::create('carga_asignacion_validaciones', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre_asignacion');
+            $table->string('estado', 9)->deafult('pendiente');//exitosa fallida pendiente
             $table->timestamps();
         });
     }
