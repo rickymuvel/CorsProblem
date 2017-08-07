@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUsuariosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('usuarios', function (Blueprint $table) {
@@ -25,7 +20,7 @@ class CreateUsuariosTable extends Migration
             $table->string("movil");
             $table->string("fijo");
             $table->string("direccion");
-            $table->char("idubigeo",10);
+            $table->char("idubigeo", 10);
             $table->string("email_corp")->unique();
             $table->string("email_per")->unique();
             $table->string("login")->unique();

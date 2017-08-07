@@ -9,8 +9,8 @@ class CargarAsignacionController extends Controller
 {
     public function get(){
         try {
-//            $listado = DB::select('call sp_getSegmentos()');
-//            return response()->json([ "datos" => $listado, "status" => true], 201);
+            $listado = DB::select('call sp_getSegmentos()');
+            return response()->json([ "datos" => $listado, "status" => true], 201);
         }catch(\Exception $e){
             return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false ], 201);
         }
