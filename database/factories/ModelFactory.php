@@ -20,7 +20,7 @@ $factory->define(App\Perfil::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Usuario::class, function (Faker\Generator $faker) {
+$factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         "dni" => $faker->randomNumber(8),
         "ap_paterno" => $faker->lastName,
@@ -35,7 +35,8 @@ $factory->define(App\Usuario::class, function (Faker\Generator $faker) {
         "idubigeo" => $faker->randomElement(array("010101","010102","010103","100204","140106","131015","140109","150101","030506","040406","050524","050616","080106","080409")),
         "email_corp" => $faker->companyEmail,
         "email_per" => $faker->email,
-        "login" => $faker->userName,
+        "user" => $faker->userName,
+        "password" => bcrypt("12345678"),
         "contacto_emergencia" => $faker->colorName,
         "telef_contacto" => $faker->phoneNumber,
         "id_perfil" => $faker->randomElement(array(1,2,3)),

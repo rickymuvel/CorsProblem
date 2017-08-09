@@ -33,17 +33,16 @@ Route::post('/ubigeo', [
 ]);
 
 Route::get('/usuario', [
-    'uses' => 'UsuarioController@get'
+    'uses' => 'UserController@get'
 ]);
-
 Route::get("/usuario/perfiles/{id_perfil}", [
-    'uses' => 'UsuarioController@getUsuariosxPerfil'
+    'uses' => 'UserController@getUsuariosxPerfil'
 ]);
 Route::post('/usuario', [
-    'uses' => 'UsuarioController@set'
+    'uses' => 'UserController@set'
 ]);
 Route::put('/usuario', [
-    'uses' => 'UsuarioController@update'
+    'uses' => 'UserController@update'
 ]);
 
 Route::get('/proveedor', [
@@ -378,3 +377,16 @@ Route::put('/cargar-asignacion', [
     'uses' => 'CargarAsignacionController@update'
 ]);
 
+// Login
+
+Route::post('/login/auth', [
+    'uses' => 'LoginController@auth'
+]);
+
+Route::post('/cargar-asignacion', [
+    'uses' => 'CargarAsignacionController@set'
+]);
+
+Route::put('/cargar-asignacion', [
+    'uses' => 'CargarAsignacionController@update'
+]);

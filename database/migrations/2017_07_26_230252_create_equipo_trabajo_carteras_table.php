@@ -23,7 +23,7 @@ class CreateEquipoTrabajoCarterasTable extends Migration
             $table->integer('id_segmento')->unsigned();
             $table->foreign('id_proveedor')->references('id')->on('proveedores');
             $table->foreign('id_cartera')->references('id')->on('carteras');
-            $table->foreign('id_usuario')->references('id')->on('usuarios');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->foreign('id_perfil')->references('id')->on('perfiles');
             $table->foreign('id_equipo')->references('id')->on('equipos_trabajo');
             $table->foreign('id_segmento')->references('id')->on('segmentos');

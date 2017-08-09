@@ -17,7 +17,7 @@ class CreateCargaAsignacionValidacionsTable extends Migration
             $table->increments('id');
             $table->string('nombre_asignacion');
             $table->integer('id_usuario')->unsigned();
-            $table->foreign('id_usuario')->references('id')->on('usuarios');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->string('estado', 9)->default('pendiente');// (exitosa, fallida, pendiente)
             $table->timestamps();
         });

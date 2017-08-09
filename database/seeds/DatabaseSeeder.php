@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
         factory('App\Perfil', 4)->create();
-        factory('App\Usuario', 30)->create();
+        factory('App\User', 30)->create();
         factory('App\Rubro', 7)->create();
         factory('App\Proveedor', 30)->create();
         foreach ($this->tipoCarteras as $elemento) {
