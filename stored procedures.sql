@@ -4,7 +4,7 @@ CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getUsuarios`()
 BEGIN
   SELECT 
 	us.id, us.dni, us.ap_paterno, us.ap_materno, us.nombres, us.fecnac, us.est_civil, us.fec_ingreso, 
-    us.movil, us.fijo, us.direccion, us.idubigeo, us.email_corp, us.email_per, us.login, 
+    us.movil, us.fijo, us.direccion, us.idubigeo, us.email_corp, us.email_per, us.user, 
     us.contacto_emergencia, us.telef_contacto, per.perfil, per.id as id_perfil, us.turno,
 	CONCAT(ub.dpto, "/", ub.prov, "/", ub.dist) as distrito, ub.idubigeo as ubigeo 
   FROM ubigeo ub
@@ -20,7 +20,7 @@ CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getUsuario`( IN _id_usuario char(10
 BEGIN
   SELECT 
 	us.id, us.dni, us.ap_paterno, us.ap_materno, us.nombres, us.fecnac, us.est_civil, us.fec_ingreso, 
-	us.movil, us.fijo, us.direccion, us.idubigeo, us.email_corp, us.email_per, us.login, 
+	us.movil, us.fijo, us.direccion, us.idubigeo, us.email_corp, us.email_per, us.user, 
 	us.contacto_emergencia, us.telef_contacto, per.perfil, per.id, us.turno,
 	CONCAT(ub.dpto, "/", ub.prov, "/", ub.dist) as distrito, ub.idubigeo as ubigeo 
   FROM ubigeo ub

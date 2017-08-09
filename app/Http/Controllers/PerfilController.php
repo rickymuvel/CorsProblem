@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Perfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use JWTAuth;
 
 class PerfilController extends Controller
 {
@@ -12,7 +13,7 @@ class PerfilController extends Controller
     {
         $user = new Perfil();
         $user->perfil = $request->input('perfil');
-        $user->estado = $request->input('estado');
+//        $user->estado = $request->input('estado');
         $user->save();
         $perfiles = DB::table('perfiles')->orderBy('id', 'desc')
             ->limit(1)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use JWTAuth;
 
 class UserController extends Controller
 {
@@ -68,10 +69,11 @@ class UserController extends Controller
             $editado = false;
             $msj = $e->getMessage();
         }
-        return response()->json(["editado"=>$editado, "msj"=> $msj], 201);
+        return response()->json(["editado"=>$editado, "msj" => $msj], 201);
     }
     public function get(){
         $consulta = DB::select('call sp_getUsuarios()');
+//        $usuario = JWTAuth::parseToken()->toUser();
         return response()->json(["usuarios"=>$consulta], 201);
     }
 
