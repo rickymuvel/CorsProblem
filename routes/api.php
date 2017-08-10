@@ -480,3 +480,20 @@ Route::post('/cargar-asignacion', [
 Route::put('/cargar-asignacion', [
     'uses' => 'CargarAsignacionController@update'
 ]);
+
+// Menu
+
+Route::post('/menu/perfil-menu-contenedor', [
+    'uses' => 'MenuController@create_perfil_menu_contenedor',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/menu/menu-contenedor', [
+    'uses' => 'MenuController@create_menu_contenedor',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/menu/menu-item', [
+    'uses' => 'MenuController@create_menu_item',
+    'middleware' => 'auth.jwt'
+]);

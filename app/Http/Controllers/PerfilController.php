@@ -13,7 +13,6 @@ class PerfilController extends Controller
     {
         $user = new Perfil();
         $user->perfil = $request->input('perfil');
-//        $user->estado = $request->input('estado');
         $user->save();
         $perfiles = DB::table('perfiles')->orderBy('id', 'desc')
             ->limit(1)
