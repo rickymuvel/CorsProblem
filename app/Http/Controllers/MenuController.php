@@ -60,8 +60,6 @@ class MenuController extends Controller
         try {
             $registro = new MenuItem();
             $registro->id_menu_contenedor = $request->input('url');
-            $registro->id_menu_contenedor = $request->input('imagen');
-            $registro->id_menu_item = $request->input('imagen');
             $registro->id_menu_item = $request->input('imagen');
             $registro->save();
 
