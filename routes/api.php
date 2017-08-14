@@ -483,8 +483,13 @@ Route::put('/cargar-asignacion', [
 
 // Menu
 
-Route::post('/menu/perfil-menu-contenedor', [
-    'uses' => 'MenuController@create_perfil_menu_contenedor',
+Route::post('/menu/perfil-menu-contenedor-base', [
+    'uses' => 'MenuController@create_perfil_menu_contenedor_base',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/menu/perfil-menu-contenedor-base', [
+    'uses' => 'MenuController@get_perfil_menu_contenedor_base',
     'middleware' => 'auth.jwt'
 ]);
 
@@ -493,7 +498,22 @@ Route::post('/menu/menu-contenedor', [
     'middleware' => 'auth.jwt'
 ]);
 
+Route::get('/menu/menu-contenedor', [
+    'uses' => 'MenuController@get_menu_contenedor',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/menu/menu-contenedor/contenedores', [
+    'uses' => 'MenuController@get_contenedores',
+    'middleware' => 'auth.jwt'
+]);
+
 Route::post('/menu/menu-item', [
     'uses' => 'MenuController@create_menu_item',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/menu/menu-item', [
+    'uses' => 'MenuController@get_menu_item',
     'middleware' => 'auth.jwt'
 ]);

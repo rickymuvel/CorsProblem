@@ -169,3 +169,47 @@ BEGIN
   ORDER BY pr.id ASC;
 END $$
 DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getMenuContenedorBase` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getMenuContenedorBase`()
+BEGIN
+  SELECT pmc.*,p.perfil
+  FROM perfil_menu_contenedores pmc
+	INNER JOIN perfiles p ON pmc.id_perfil=p.id
+  ORDER BY pmc.id ASC;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getMenuContenedor` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getMenuContenedor`()
+BEGIN
+    SELECT mc.id, 
+		   mc.nombre as menu,
+           mc.imagen,
+           mc.nivel,
+           mc.id_menu_contenedor,
+           pmc.nombre as nombre_base           
+  FROM menus_contenedor mc 
+	INNER JOIN perfil_menu_contenedores pmc ON mc.id_perfil_menu_contenedor = pmc.id
+  ORDER BY mc.id ASC;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getMenuContenedorXNivel` $$
+CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getMenuContenedorXNivel`(IN _nivel int(1))
+BEGIN
+    SELECT mc.id, 
+		   mc.nombre as menu,
+           mc.imagen,
+           mc.nivel,
+           mc.id_menu_contenedor,
+           pmc.nombre as nombre_base           
+  FROM menus_contenedor mc 
+	INNER JOIN perfil_menu_contenedores pmc ON mc.id_perfil_menu_contenedor = pmc.id
+  WHERE mc.nivel = _nivel
+  ORDER BY mc.id ASC;
+END $$
+DELIMITER ;

@@ -15,7 +15,7 @@ class CreateMenuContenedorsTable extends Migration
             $table->string('nombre');
             $table->string('imagen')->nullable();
             $table->integer('nivel')->unsigned();
-            $table->integer('id_menu_contenedor')->unsigned();
+            $table->integer('id_menu_contenedor')->nullable();
             $table->timestamps();
         });
     }
