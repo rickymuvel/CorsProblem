@@ -49,7 +49,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Rubro::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->unique()->randomElement(array('Marketing', 'Informática', 'Soporte', 'Cobranzas', 'Todista', 'Carpintería', 'Zapatería')),
-        'descripcion' => $faker->text
+        'descripcion' => $faker->randomElement(array('Este texto es solo de ejemplo'))
     ];
 });
 

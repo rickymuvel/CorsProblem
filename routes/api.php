@@ -21,8 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //]);
 
 Route::post('/perfil', [
-   'uses' => 'PerfilController@set',
-    'middleware' => 'auth.jwt'
+   'uses' => 'PerfilController@set'
 ]);
 Route::get('/perfil', [
     'uses'=> 'PerfilController@get',

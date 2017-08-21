@@ -1,6 +1,6 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getUsuarios` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getUsuarios`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getUsuarios`()
 BEGIN
   SELECT 
 	us.id, us.dni, us.ap_paterno, us.ap_materno, us.nombres, us.fecnac, us.est_civil, us.fec_ingreso, 
@@ -16,7 +16,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getUsuario` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getUsuario`( IN _id_usuario char(10))
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getUsuario`( IN _id_usuario char(10))
 BEGIN
   SELECT 
 	us.id, us.dni, us.ap_paterno, us.ap_materno, us.nombres, us.fecnac, us.est_civil, us.fec_ingreso, 
@@ -32,7 +32,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getProveedores` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getProveedores`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getProveedores`()
 BEGIN
   SELECT 
 	p.*, r.nombre as rubro
@@ -44,7 +44,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getCarteras` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getCarteras`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getCarteras`()
 BEGIN
   SELECT 
 	c.*, p.razon_social, tc.tipo_cartera
@@ -58,7 +58,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getProductos` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getProductos`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getProductos`()
 BEGIN
   SELECT 
 	p.*, tp.tipo_producto
@@ -71,7 +71,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getSegmentos` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getSegmentos`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getSegmentos`()
 BEGIN
   SELECT s.*, c.cartera FROM segmentos s INNER JOIN carteras c ON s.id_cartera=c.id ORDER BY s.id ASC;
 		
@@ -80,7 +80,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getResultados` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getResultados`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getResultados`()
 BEGIN
   SELECT r.*, tr.tipo_resultado 
   FROM resultados r 
@@ -93,7 +93,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getEqTrabajoCartera` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getEqTrabajoCartera`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getEqTrabajoCartera`()
 BEGIN
   SELECT 
 	etc.*,
@@ -116,7 +116,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getProductoCartera` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getProductoCartera`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getProductoCartera`()
 BEGIN
   SELECT pc.*, p.producto, pr.razon_social, ca.cartera
 	FROM producto_cartera pc 
@@ -129,7 +129,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getProductoProveedor` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getProductoProveedor`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getProductoProveedor`()
 BEGIN
   SELECT pp.*, p.producto, pr.razon_social
 	FROM producto_proveedores pp
@@ -141,7 +141,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getTipoContactoResultado` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getTipoContactoResultado`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getTipoContactoResultado`()
 BEGIN
   SELECT tcr.*, r.resultado, tc.tipo_contacto
 	FROM tipo_contacto_resultados tcr
@@ -154,7 +154,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getPaletaResultados` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getPaletaResultados`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getPaletaResultados`()
 BEGIN
   SELECT pr.*, 
 	  p.razon_social,
@@ -172,7 +172,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getMenuContenedorBase` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getMenuContenedorBase`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getMenuContenedorBase`()
 BEGIN
   SELECT pmc.*,p.perfil
   FROM perfil_menu_contenedores pmc
@@ -183,7 +183,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getMenuContenedor` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getMenuContenedor`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getMenuContenedor`()
 BEGIN
     SELECT mc.id, 
 		   mc.nombre as menu,
@@ -199,7 +199,7 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getMenuContenedorXNivel` $$
-CREATE DEFINER=`homestead`@`%` PROCEDURE `sp_getMenuContenedorXNivel`(IN _nivel int(1))
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getMenuContenedorXNivel`(IN _nivel int(1))
 BEGIN
     SELECT mc.id, 
 		   mc.nombre as menu,

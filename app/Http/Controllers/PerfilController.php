@@ -18,12 +18,12 @@ class PerfilController extends Controller
             ->limit(1)
             ->get();
 
-        return response()->json(['perfiles'=> $perfiles],201);
+        return response()->json(['data'=> $perfiles],201);
     }
 
     public function get()
     {
        $perfiles = Perfil::all();
-       return response()->json(['perfiles'=>$perfiles], 201);
+       return response()->json(['data'=>$perfiles], 201);
     }
 }
