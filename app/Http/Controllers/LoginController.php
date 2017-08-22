@@ -18,7 +18,7 @@ class LoginController extends Controller
 
         $credentials = $request->only('user', 'password');
         try {
-            JWTAuth::factory()->setTTL(null);
+//            JWTAuth::factory()->setTTL(null);
             if(!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
                     'error' => "credenciales inválidas"
