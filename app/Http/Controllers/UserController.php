@@ -73,7 +73,6 @@ class UserController extends Controller
     }
     public function get(){
         $consulta = DB::select('call sp_getUsuarios()');
-//        $usuario = JWTAuth::parseToken()->toUser();
         return response()->json(["usuarios"=>$consulta], 201);
     }
 
