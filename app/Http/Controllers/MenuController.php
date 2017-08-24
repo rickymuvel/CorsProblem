@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modelos\MenuContenedor;
+use App\Modelos\MenuContenedorItem;
 use App\Modelos\MenuItem;
 use App\Modelos\PerfilMenuContenedor;
 use Illuminate\Http\Request;
@@ -95,15 +96,25 @@ class MenuController extends Controller
 
     public function create_menu_contenedor_items(Request $request){
         try {
-            $registro = new MenuItem();
-            $registro->id_menu_contenedor = $request->input('url');
-            $registro->id_menu_item = $request->input('imagen');
+            $registro = new MenuContenedorItem();
+            $registro->id_menu_contenedor = $request->input('id_menu_contenedor');
+            $registro->id_menu_item = $request->input('id_menu_item');
             $registro->save();
 
-            $datos = MenuItem::all();
+            $datos = DB::select('call sp_getMenuContenedorItem()');
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
             return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
         }
     }
+
+    public function get_menu_contenedor_items(){
+        try {
+            $datos = DB::select('call sp_getMenuContenedorItem()');
+            return response()->json(["datos"=>$datos, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
+        }
+    }
+
 }

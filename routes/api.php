@@ -516,3 +516,13 @@ Route::get('/menu/menu-item', [
     'uses' => 'MenuController@get_menu_item',
     'middleware' => 'auth.jwt'
 ]);
+
+Route::post('/menu/menu-contenedor-item', [
+    'uses' => 'MenuController@create_menu_contenedor_items',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/menu/menu-contenedor-item', [
+    'uses' => 'MenuController@get_menu_contenedor_items',
+    'middleware' => 'auth.jwt'
+]);

@@ -213,3 +213,20 @@ BEGIN
   ORDER BY mc.id ASC;
 END $$
 DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getMenuContenedorItem` $$
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getMenuContenedorItem`()
+BEGIN
+SELECT 
+	mci.id, 
+    mc.nombre as contenedor, 
+    mi.nombre as item,
+    pmc.nombre as base
+FROM ventas.menu_contenedor_items mci
+	INNER JOIN ventas.menus_contenedor mc ON mci.id_menu_contenedor=mc.id
+	INNER JOIN ventas.menu_items mi ON mci.id_menu_item=mi.id
+    INNER JOIN ventas.perfil_menu_contenedores pmc ON pmc.id = mc.id_perfil_menu_contenedor
+ORDER BY ID ASC;
+END $$
+DELIMITER ;
