@@ -222,11 +222,28 @@ SELECT
 	mci.id, 
     mc.nombre as contenedor, 
     mi.nombre as item,
-    pmc.nombre as base
+    pmc.nombre as nombre_base
 FROM ventas.menu_contenedor_items mci
 	INNER JOIN ventas.menus_contenedor mc ON mci.id_menu_contenedor=mc.id
 	INNER JOIN ventas.menu_items mi ON mci.id_menu_item=mi.id
     INNER JOIN ventas.perfil_menu_contenedores pmc ON pmc.id = mc.id_perfil_menu_contenedor
 ORDER BY ID ASC;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getMenu` $$
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_getMenu`(IN _perfil int(1))
+BEGIN
+SELECT 
+	mci.id, 
+    mc.nombre as contenedor,
+    mi.nombre as item
+FROM ventas.menu_contenedor_items mci
+	INNER JOIN ventas.menus_contenedor mc ON mci.id_menu_contenedor=mc.id
+    INNER JOIN ventas.menu_items mi ON mci.id_menu_item=mi.id
+    INNER JOIN ventas.perfil_menu_contenedores pmc ON mc.id_perfil_menu_contenedor=pmc.id
+WHERE pmc.id_perfil=_perfil
+ORDER BY contenedor ASC;
 END $$
 DELIMITER ;

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Exceptions\JWTException;
-//use Tymon\JWTAuth\JWTAuth;
 use JWTAuth;
 
 class LoginController extends Controller
@@ -18,7 +19,6 @@ class LoginController extends Controller
 
         $credentials = $request->only('user', 'password');
         try {
-//            JWTAuth::factory()->setTTL(null);
             if(!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
                     'error' => "credenciales inválidas"
@@ -30,6 +30,17 @@ class LoginController extends Controller
             ], 500);
         }
 
-        return response()->json(['token' => $token ], 200);
+        // Obtenemos la información del usuario
+        $user = User::where('user', $request->input('user'))
+                    ->get();
+
+        $perfil = $user->toArray();
+        $id_perfil = $perfil[0]["id_perfil"];
+
+        // buscamos el menú del usuario
+        $menu = DB::select('call sp_getMenu('. $id_perfil .')');
+
+        return response()->json(['token' => $token, 'user'=>$user->toArray(), 'menu' => $menu ], 200);
+
     }
 }
