@@ -40,7 +40,7 @@ class MenuController extends Controller
                 'id_perfil' => $request->input('id_perfil'),
                 'nombre' => $request->input('nombre')
             ]);
-            $listado = DB::select('call sp_getMenuContenedor()');
+            $listado = DB::select('call sp_getMenuContenedorBase()');
             return response()->json(["datos" => $listado, "status"=>true], 201);
         }catch(\Exception $e){
             return response()->json(["datos" => $e->getMessage(), "status"=>false], 201);
