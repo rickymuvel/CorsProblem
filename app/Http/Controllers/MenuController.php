@@ -34,12 +34,26 @@ class MenuController extends Controller
         }
     }
 
+    public function update_perfil_menu_contenedor_base(Request $request){
+        try {
+            PerfilMenuContenedor::where('id', $request->input('id'))->update([
+                'id_perfil' => $request->input('id_perfil'),
+                'nombre' => $request->input('nombre')
+            ]);
+            $listado = DB::select('call sp_getMenuContenedor()');
+            return response()->json(["datos" => $listado, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["datos" => $e->getMessage(), "status"=>false], 201);
+        }
+    }
+
     public function create_menu_contenedor(Request $request){
         try {
             $registro = new MenuContenedor();
             $registro->id_perfil_menu_contenedor = $request->input('id_perfil_menu_contenedor');
             $registro->nombre = $request->input('nombre');
             $registro->imagen = $request->input('imagen');
+            $registro->orden = $request->input('orden');
             $registro->nivel = $request->input('nivel');
             $registro->id_menu_contenedor = $request->input('id_menu_contenedor');
             $registro->save();
@@ -59,6 +73,23 @@ class MenuController extends Controller
             $registros = DB::select('call sp_getMenuContenedor()');
         }
         return response()->json(["datos" => $registros], 201);
+    }
+
+    public function update_contenedores(Request $request){
+        try {
+            MenuContenedor::where('id', $request->input('id'))->update([
+                'id_perfil_menu_contenedor' => $request->input('id_perfil_menu_contenedor'),
+                'nombre' => $request->input('nombre'),
+                'imagen' => $request->input('imagen'),
+                'orden' => $request->input('orden'),
+                'nivel' => $request->input('nivel'),
+                'id_menu_contenedor' => $request->input('id_menu_contenedor'),
+            ]);
+            $listado = DB::select('call sp_getMenuContenedor()');
+            return response()->json(["datos" => $listado, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["datos" => $e->getMessage(), "status"=>false], 201);
+        }
     }
 
     public function get_menu_contenedor(){

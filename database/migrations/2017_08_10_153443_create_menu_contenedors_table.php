@@ -14,6 +14,7 @@ class CreateMenuContenedorsTable extends Migration
             $table->foreign('id_perfil_menu_contenedor')->references('id')->on('perfil_menu_contenedores');
             $table->string('nombre');
             $table->string('imagen')->nullable();
+            $table->integer('orden')->unsigned();
             $table->integer('nivel')->unsigned();
             $table->integer('id_menu_contenedor')->nullable();
             $table->timestamps();

@@ -189,8 +189,9 @@ BEGIN
 		   mc.nombre as menu,
            mc.imagen,
            mc.nivel,
+           mc.orden,
            mc.id_menu_contenedor,
-           pmc.nombre as nombre_base           
+           pmc.nombre as nombre_base
   FROM menus_contenedor mc 
 	INNER JOIN perfil_menu_contenedores pmc ON mc.id_perfil_menu_contenedor = pmc.id
   ORDER BY mc.id ASC;
@@ -205,6 +206,7 @@ BEGIN
 		   mc.nombre as menu,
            mc.imagen,
            mc.nivel,
+           mc.orden,
            mc.id_menu_contenedor,
            pmc.nombre as nombre_base           
   FROM menus_contenedor mc 
@@ -238,7 +240,8 @@ BEGIN
 SELECT 
 	mci.id, 
     mc.nombre as contenedor,
-    mi.nombre as item
+    mi.nombre as item,
+    mi.url
 FROM ventas.menu_contenedor_items mci
 	INNER JOIN ventas.menus_contenedor mc ON mci.id_menu_contenedor=mc.id
     INNER JOIN ventas.menu_items mi ON mci.id_menu_item=mi.id

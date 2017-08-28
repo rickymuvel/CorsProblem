@@ -492,6 +492,11 @@ Route::get('/menu/perfil-menu-contenedor-base', [
     'middleware' => 'auth.jwt'
 ]);
 
+Route::put('/menu/perfil-menu-contenedor-base', [
+    'uses' => 'MenuController@update_perfil_menu_contenedor_base',
+    'middleware' => 'auth.jwt'
+]);
+
 Route::post('/menu/menu-contenedor', [
     'uses' => 'MenuController@create_menu_contenedor',
     'middleware' => 'auth.jwt'
