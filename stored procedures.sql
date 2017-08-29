@@ -224,7 +224,8 @@ SELECT
 	mci.id, 
     mc.nombre as contenedor, 
     mi.nombre as item,
-    pmc.nombre as nombre_base
+    pmc.nombre as nombre_base,
+    mci.estado
 FROM ventas.menu_contenedor_items mci
 	INNER JOIN ventas.menus_contenedor mc ON mci.id_menu_contenedor=mc.id
 	INNER JOIN ventas.menu_items mi ON mci.id_menu_item=mi.id
@@ -241,7 +242,8 @@ SELECT
 	mci.id, 
     mc.nombre as contenedor,
     mi.nombre as item,
-    mi.url
+    mi.url,
+    mi.imagen
 FROM ventas.menu_contenedor_items mci
 	INNER JOIN ventas.menus_contenedor mc ON mci.id_menu_contenedor=mc.id
     INNER JOIN ventas.menu_items mi ON mci.id_menu_item=mi.id
