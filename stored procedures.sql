@@ -191,7 +191,8 @@ BEGIN
            mc.nivel,
            mc.orden,
            mc.id_menu_contenedor,
-           pmc.nombre as nombre_base
+           pmc.nombre as nombre,
+           pmc.id as id_perfil_menu_contenedor
   FROM menus_contenedor mc 
 	INNER JOIN perfil_menu_contenedores pmc ON mc.id_perfil_menu_contenedor = pmc.id
   ORDER BY mc.id ASC;
@@ -208,13 +209,15 @@ BEGIN
            mc.nivel,
            mc.orden,
            mc.id_menu_contenedor,
-           pmc.nombre as nombre_base           
+           pmc.nombre as nombre,
+           pmc.id as id_perfil_menu_contenedor
   FROM menus_contenedor mc 
 	INNER JOIN perfil_menu_contenedores pmc ON mc.id_perfil_menu_contenedor = pmc.id
   WHERE mc.nivel = _nivel
   ORDER BY mc.id ASC;
 END $$
 DELIMITER ;
+
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getMenuContenedorItem` $$
@@ -224,7 +227,8 @@ SELECT
 	mci.id, 
     mc.nombre as contenedor, 
     mi.nombre as item,
-    pmc.nombre as nombre_base,
+    pmc.nombre as nombre,
+    pmc.id as id_perfil_menu_contenedor,
     mci.estado
 FROM ventas.menu_contenedor_items mci
 	INNER JOIN ventas.menus_contenedor mc ON mci.id_menu_contenedor=mc.id
@@ -241,6 +245,7 @@ BEGIN
 SELECT 
 	mci.id, 
     mc.nombre as contenedor,
+    mc.imagen as contenedor_imagen,
     mi.nombre as item,
     mi.url,
     mi.imagen
@@ -252,3 +257,5 @@ WHERE pmc.id_perfil=_perfil
 ORDER BY contenedor ASC;
 END $$
 DELIMITER ;
+
+#call sp_getMenu(1);
