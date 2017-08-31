@@ -47,6 +47,9 @@ class MenuController extends Controller
         }
     }
 
+
+
+
     public function create_menu_contenedor(Request $request){
         try {
             $registro = new MenuContenedor();
@@ -65,7 +68,7 @@ class MenuController extends Controller
         }
     }
 
-    public function get_contenedores(Request $request){
+    public function get_menu_contenedor(Request $request){
         $nivel = $request->input("nivel");
         if(isset($nivel) && is_numeric($nivel)){
             $registros = DB::select('call sp_getMenuContenedorXNivel('. $nivel .')');
@@ -75,11 +78,11 @@ class MenuController extends Controller
         return response()->json(["datos" => $registros], 201);
     }
 
-    public function update_contenedores(Request $request){
+    public function update_menu_contenedor(Request $request){
         try {
             MenuContenedor::where('id', $request->input('id'))->update([
                 'id_perfil_menu_contenedor' => $request->input('id_perfil_menu_contenedor'),
-                'nombre' => $request->input('nombre'),
+                'nombre' => $request->input('menu'),
                 'imagen' => $request->input('imagen'),
                 'orden' => $request->input('orden'),
                 'nivel' => $request->input('nivel'),
@@ -92,14 +95,18 @@ class MenuController extends Controller
         }
     }
 
-    public function get_menu_contenedor(){
-        try {
-            $datos = DB::select('call sp_getMenuContenedor()');
-            return response()->json(["datos"=>$datos, "status"=>true], 201);
-        }catch(\Exception $e){
-            return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
-        }
-    }
+//    public function get_contenedores(){
+//        try {
+//            $datos = DB::select('call sp_getMenuContenedor()');
+//            return response()->json(["datos"=>$datos, "status"=>true], 201);
+//        }catch(\Exception $e){
+//            return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
+//        }
+//    }
+//
+//    public function update_menu_contenedor(Request $request){
+//
+//    }
 
     public function create_menu_item(Request $request){
         try {
@@ -125,6 +132,23 @@ class MenuController extends Controller
         }
     }
 
+    public function update_menu_item(Request $request){
+        try {
+            MenuItem::where('id', $request->input('id'))->update([
+                'nombre' => $request->input('nombre'),
+                'url' => $request->input('url'),
+                'imagen' => $request->input('imagen')
+            ]);
+
+            $datos = MenuItem::all();
+            return response()->json(["datos" => $datos, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["datos" => $e->getMessage(), "status"=>false], 201);
+        }
+    }
+
+
+
     public function create_menu_contenedor_items(Request $request){
         try {
             $registro = new MenuContenedorItem();
@@ -145,6 +169,20 @@ class MenuController extends Controller
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
             return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
+        }
+    }
+
+    public function update_menu_contenedor_items(Request $request){
+        try {
+            MenuContenedorItem::where('id', $request->input('id'))->update([
+                'id_menu_contenedor' => $request->input('id_menu_contenedor'),
+                'id_menu_item' => $request->input('id_menu_item')
+            ]);
+
+            $datos = DB::select('call sp_getMenuContenedorItem()');
+            return response()->json(["datos"=>$datos, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["datos" => $e->getMessage(), "status"=>false], 201);
         }
     }
 

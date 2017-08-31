@@ -21,7 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //]);
 
 Route::post('/perfil', [
-   'uses' => 'PerfilController@set'
+   'uses' => 'PerfilController@set',
+    'middleware' => 'auth.jwt'
 ]);
 Route::get('/perfil', [
     'uses'=> 'PerfilController@get',
@@ -497,6 +498,8 @@ Route::put('/menu/perfil-menu-contenedor-base', [
     'middleware' => 'auth.jwt'
 ]);
 
+
+
 Route::post('/menu/menu-contenedor', [
     'uses' => 'MenuController@create_menu_contenedor',
     'middleware' => 'auth.jwt'
@@ -512,6 +515,15 @@ Route::get('/menu/menu-contenedor/contenedores', [
     'middleware' => 'auth.jwt'
 ]);
 
+Route::put('/menu/menu-contenedor', [
+    'uses' => 'MenuController@update_menu_contenedor',
+    'middleware' => 'auth.jwt'
+]);
+
+
+
+
+
 Route::post('/menu/menu-item', [
     'uses' => 'MenuController@create_menu_item',
     'middleware' => 'auth.jwt'
@@ -522,6 +534,13 @@ Route::get('/menu/menu-item', [
     'middleware' => 'auth.jwt'
 ]);
 
+Route::put('/menu/menu-item', [
+    'uses' => 'MenuController@update_menu_item',
+    'middleware' => 'auth.jwt'
+]);
+
+
+
 Route::post('/menu/menu-contenedor-item', [
     'uses' => 'MenuController@create_menu_contenedor_items',
     'middleware' => 'auth.jwt'
@@ -529,5 +548,10 @@ Route::post('/menu/menu-contenedor-item', [
 
 Route::get('/menu/menu-contenedor-item', [
     'uses' => 'MenuController@get_menu_contenedor_items',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::put('/menu/menu-contenedor-item', [
+    'uses' => 'MenuController@update_menu_contenedor_items',
     'middleware' => 'auth.jwt'
 ]);

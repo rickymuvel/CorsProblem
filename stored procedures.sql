@@ -226,7 +226,9 @@ BEGIN
 SELECT 
 	mci.id, 
     mc.nombre as contenedor, 
+    mc.id as id_menu_contenedor,
     mi.nombre as item,
+    mi.id as id_menu_item,
     pmc.nombre as nombre,
     pmc.id as id_perfil_menu_contenedor,
     mci.estado
@@ -245,8 +247,10 @@ BEGIN
 SELECT 
 	mci.id, 
     mc.nombre as contenedor,
+    mc.id as id_menu_contenedor,
     mc.imagen as contenedor_imagen,
     mi.nombre as item,
+    mi.id as id_menu_item,
     mi.url,
     mi.imagen
 FROM ventas.menu_contenedor_items mci
