@@ -95,15 +95,15 @@ class MenuController extends Controller
         }
     }
 
-//    public function get_contenedores(){
-//        try {
-//            $datos = DB::select('call sp_getMenuContenedor()');
-//            return response()->json(["datos"=>$datos, "status"=>true], 201);
-//        }catch(\Exception $e){
-//            return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
-//        }
-//    }
-//
+    public function get_contenedores(){
+        try {
+            $datos = DB::select('call sp_getMenuContenedor()');
+            return response()->json(["datos"=>$datos, "status"=>true], 201);
+        }catch(\Exception $e){
+            return response()->json(["datos"=>$e->getMessage(), "status"=>false], 201);
+        }
+    }
+
 //    public function update_menu_contenedor(Request $request){
 //
 //    }

@@ -510,6 +510,7 @@ Route::get('/menu/menu-contenedor', [
     'middleware' => 'auth.jwt'
 ]);
 
+
 Route::get('/menu/menu-contenedor/contenedores', [
     'uses' => 'MenuController@get_contenedores',
     'middleware' => 'auth.jwt'
