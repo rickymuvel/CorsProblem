@@ -258,7 +258,7 @@ FROM ventas.menu_contenedor_items mci
     INNER JOIN ventas.menu_items mi ON mci.id_menu_item=mi.id
     INNER JOIN ventas.perfil_menu_contenedores pmc ON mc.id_perfil_menu_contenedor=pmc.id
 WHERE pmc.id_perfil=_perfil
-ORDER BY contenedor ASC;
+ORDER BY mc.orden ASC;
 END $$
 DELIMITER ;
 
