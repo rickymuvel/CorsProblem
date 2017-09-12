@@ -27,7 +27,7 @@ class UserController extends Controller
         $obj->idubigeo = $request->input("idubigeo");
         $obj->email_corp = $request->input("email_corp");
         $obj->email_per = $request->input("email_per");
-        $obj->user = $request->input("usuario");
+        $obj->user = $request->input("user");
         $obj->password = bcrypt($request->input("dni"));
         $obj->contacto_emergencia = $request->input("contacto_emergencia");
         $obj->telef_contacto = $request->input("telef_contacto");
