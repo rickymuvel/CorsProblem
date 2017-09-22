@@ -17,6 +17,18 @@ class DatabaseSeeder extends Seeder
         array('id'=>3,'id_proveedor'=>3, 'id_tipo_cartera'=>3, 'cartera'=>'SCI'),
         array('id'=>4,'id_proveedor'=>3, 'id_tipo_cartera'=>4, 'cartera'=>'Ripley')
     );
+    protected $categoria_gestion = array(
+        array('id'=>1,'nombre'=>"Oficina"),
+        array('id'=>2,'nombre'=>"Campo"),
+    );
+
+    protected $tipo_gestion = array(
+        array('id'=>1,'id_categoria_gestion'=>1, "tipo_gestion"=>"Call"),
+        array('id'=>2,'id_categoria_gestion'=>1, "tipo_gestion"=>"Predictivo"),
+        array('id'=>3,'id_categoria_gestion'=>1, "tipo_gestion"=>"Atención al cliente"),
+        array('id'=>4,'id_categoria_gestion'=>2, "tipo_gestion"=>"Campo"),
+    );
+
     protected $tipo_telefono = array('Fijo', 'Laboral', 'Domicilio', 'Celular', 'Referencia');
 
     public function run()
@@ -51,6 +63,17 @@ class DatabaseSeeder extends Seeder
         factory('App\Modelos\ProductoProveedor', 25)->create();
         factory('App\TipoContactoResultado', 9)->create();
         factory('App\PaletaResultado', 50)->create();
+
+        foreach ($this->categoria_gestion as $element){
+            $this->insertCategoriaGestion($element);
+        }
+
+        foreach ($this->tipo_gestion as $element){
+            $this->insertTipoGestion($element);
+        }
+
+
+
         Model::reguard();
     }
 
@@ -87,6 +110,25 @@ class DatabaseSeeder extends Seeder
     public function insertTipoTelefono($element){
         \Illuminate\Support\Facades\DB::table('tipos_telefono')->insert([
             'tipo_telefono' => $element,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+    }
+
+    // Categorias de las gestiones
+    public function insertCategoriaGestion($element){
+        \Illuminate\Support\Facades\DB::table('categoria_gestion')->insert([
+            'nombre' => $element["nombre"],
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+    }
+
+    // Tipos de las gestiones
+    public function insertTipoGestion($element){
+        \Illuminate\Support\Facades\DB::table('tipo_gestion')->insert([
+            'id_categoria_gestion' => $element["id_categoria_gestion"],
+            'tipo_gestion' => $element["tipo_gestion"],
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
