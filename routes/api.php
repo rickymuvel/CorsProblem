@@ -614,3 +614,11 @@ Route::put('/menu/menu-contenedor-item', [
     'uses' => 'MenuController@update_menu_contenedor_items',
     'middleware' => 'auth.jwt'
 ]);
+
+
+// Gestiones
+// obtener categorias de gestiones
+Route::get('/gestiones/categorias', [
+    'uses' => 'GestionesController@getCategorias',
+    'middleware' => 'auth.jwt'
+]);

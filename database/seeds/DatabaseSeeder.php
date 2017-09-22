@@ -29,6 +29,26 @@ class DatabaseSeeder extends Seeder
         array('id'=>4,'id_categoria_gestion'=>2, "tipo_gestion"=>"Campo"),
     );
 
+    protected $menu_base = array(
+        array('id_perfil'=>1, "menu"=>"Menu Developer"),
+        array('id_perfil'=>2, "menu"=>"Menu Administrador")
+    );
+
+    protected $menu_contenedor = array(
+        array('id_perfil_menu_contenedor'=>1, "nombre"=>"Generar", "orden"=>1, "nivel"=>1),
+        array('id_perfil_menu_contenedor'=>2, "nombre"=>"Paginas", "orden"=>1, "nivel"=>1),
+    );
+
+    protected $menu_item = array(
+        array('nombre'=>"Crear menú", "url"=>"menu-handle"),
+        array('nombre'=>"Paleta de resultados", "url"=>"paleta-resultados"),
+    );
+
+    protected $menu_contenedor_item = array(
+        array('id_menu_contenedor'=>1, "id_menu_item"=>1),
+        array('id_menu_contenedor'=>2, "id_menu_item"=>2),
+    );
+
     protected $tipo_telefono = array('Fijo', 'Laboral', 'Domicilio', 'Celular', 'Referencia');
 
     public function run()
@@ -72,6 +92,21 @@ class DatabaseSeeder extends Seeder
             $this->insertTipoGestion($element);
         }
 
+        foreach ($this->menu_base as $element){
+            $this->insertMenuBase($element);
+        }
+
+        foreach ($this->menu_contenedor as $element){
+            $this->insertMenuContenedor($element);
+        }
+
+        foreach ($this->menu_item as $element){
+            $this->insertMenuItem($element);
+        }
+
+        foreach ($this->menu_contenedor_item as $element){
+            $this->insertMenuContenedorItem($element);
+        }
 
 
         Model::reguard();
@@ -133,4 +168,49 @@ class DatabaseSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s')
         ]);
     }
+
+    # CREACIÓN DE MENUS
+    // Menu base
+    public function insertMenuBase($element){
+        \Illuminate\Support\Facades\DB::table('perfil_menu_contenedores')->insert([
+            'id_perfil' => $element["id_perfil"],
+            'nombre' => $element["menu"],
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+    }
+
+    // Menu Contenedor
+    public function insertMenuContenedor($element){
+        \Illuminate\Support\Facades\DB::table('menus_contenedor')->insert([
+            'id_perfil_menu_contenedor' => $element["id_perfil_menu_contenedor"],
+            'nombre' => $element["nombre"],
+            'orden' => $element["orden"],
+            'nivel' => $element["nivel"],
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+    }
+
+    // Menu Items
+    public function insertMenuItem($element){
+        \Illuminate\Support\Facades\DB::table('menu_items')->insert([
+            'nombre' => $element["nombre"],
+            'url' => $element["url"],
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+    }
+
+    // Menu Contenedor Item
+    public function insertMenuContenedorItem($element){
+        \Illuminate\Support\Facades\DB::table('menu_contenedor_items')->insert([
+            'id_menu_contenedor' => $element["id_menu_contenedor"],
+            'id_menu_item' => $element["id_menu_item"],
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+    }
+
+
 }

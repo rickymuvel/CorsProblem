@@ -15,6 +15,7 @@ class JustificacionController extends Controller
             return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);
         }
     }
+
     public function set(Request $request){
         try {
             $obj = new Justificacion();
