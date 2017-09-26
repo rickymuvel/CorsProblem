@@ -311,6 +311,16 @@ Route::post('/paleta-resultados', [
     'middleware' => 'auth.jwt'
 ]);
 
+Route::post('/paleta-resultados/resultados/set', [
+    'uses' => 'PaletaResultadoController@setPrResultados',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/paleta-resultados/resultados/delete', [
+    'uses' => 'PaletaResultadoController@deletePrResultados',
+    'middleware' => 'auth.jwt'
+]);
+
 Route::put('/paleta-resultados', [
     'uses' => 'PaletaResultadoController@update',
     'middleware' => 'auth.jwt'
