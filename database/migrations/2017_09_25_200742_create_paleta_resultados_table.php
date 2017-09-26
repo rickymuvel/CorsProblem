@@ -17,12 +17,10 @@ class CreatePaletaResultadosTable extends Migration
             $table->increments('id');
             $table->integer('id_proveedor')->unsigned();
             $table->integer('id_cartera')->unsigned();
-            $table->integer('id_resultado')->unsigned();
-            $table->integer('id_justificacion')->unsigned();
+            $table->integer('id_categoria_gestion')->unsigned();
             $table->foreign('id_proveedor')->references('id')->on('proveedores');
             $table->foreign('id_cartera')->references('id')->on('carteras');
-            $table->foreign('id_resultado')->references('id')->on('resultados');
-            $table->foreign('id_justificacion')->references('id')->on('justificaciones');
+            $table->foreign('id_categoria_gestion')->references('id')->on('categoria_gestion');
             $table->timestamps();
             $table->string('estado', 8)->default("activo");
         });

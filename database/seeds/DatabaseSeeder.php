@@ -82,11 +82,12 @@ class DatabaseSeeder extends Seeder
         factory('App\ProductoCartera', 25)->create(); //<-- Esta línea dío problemas
         factory('App\Modelos\ProductoProveedor', 25)->create();
         factory('App\TipoContactoResultado', 9)->create();
-        factory('App\PaletaResultado', 50)->create();
 
         foreach ($this->categoria_gestion as $element){
             $this->insertCategoriaGestion($element);
         }
+
+        factory('App\PaletaResultado', 50)->create();
 
         foreach ($this->tipo_gestion as $element){
             $this->insertTipoGestion($element);

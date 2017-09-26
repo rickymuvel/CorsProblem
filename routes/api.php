@@ -617,7 +617,7 @@ Route::put('/menu/menu-contenedor-item', [
 
 
 // Gestiones
-// obtener categorias de gestiones
+// Obtener categorias de gestiones
 Route::get('/gestiones/categorias', [
     'uses' => 'GestionesController@getCategorias',
     'middleware' => 'auth.jwt'
