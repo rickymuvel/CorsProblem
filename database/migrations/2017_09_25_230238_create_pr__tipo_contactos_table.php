@@ -16,11 +16,14 @@ class CreatePrTipoContactosTable extends Migration
         Schema::create('pr_tipo_contacto', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_paleta_resultado')->unsigned();
+            $table->foreign('id_paleta_resultado')->references('id')->on('paleta_resultados');
             $table->integer('id_tipo_contacto')->unsigned();
             $table->foreign('id_tipo_contacto')->references('id')->on('tipos_contacto');
-            $table->foreign('id_paleta_resultado')->references('id')->on('paleta_resultados');
+            $table->integer('id_cartera')->unsigned();
+            $table->foreign('id_cartera')->references('id')->on('carteras');
             $table->timestamps();
             $table->string('estado')->default('activo');
+            $table->unique(['id_cartera', 'id_tipo_contacto']);
         });
     }
 

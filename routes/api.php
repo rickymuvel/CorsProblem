@@ -316,8 +316,43 @@ Route::post('/paleta-resultados/resultados/set', [
     'middleware' => 'auth.jwt'
 ]);
 
+Route::post('/paleta-resultados/justificacion/set', [
+    'uses' => 'PaletaResultadoController@setPrJustificaciones',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/paleta-resultados/tipo-contacto/set', [
+    'uses' => 'PaletaResultadoController@setPrTipoContacto',
+    'middleware' => 'auth.jwt'
+]);
+
 Route::post('/paleta-resultados/resultados/delete', [
     'uses' => 'PaletaResultadoController@deletePrResultados',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/paleta-resultados/justificaciones/delete', [
+    'uses' => 'PaletaResultadoController@deletePrJustificaciones',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/paleta-resultados/tipo_contacto/delete', [
+    'uses' => 'PaletaResultadoController@deletePrTipoContacto',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/paleta-resultados/resultados/anadidos', [
+    'uses' => 'PaletaResultadoController@getResultadosAnadidos',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/paleta-resultados/justificaciones/anadidos', [
+    'uses' => 'PaletaResultadoController@getJustificacionesAnadidos',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/paleta-resultados/tipo-contacto/anadidos', [
+    'uses' => 'PaletaResultadoController@getTipoContactoAnadidos',
     'middleware' => 'auth.jwt'
 ]);
 
