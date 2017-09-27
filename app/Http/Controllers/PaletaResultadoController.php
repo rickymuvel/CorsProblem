@@ -61,9 +61,13 @@ class PaletaResultadoController extends Controller
 
     public function deletePrResultados(Request $request){
         try {
-            var_dump($request);
+            DB::table('pr_resultados')
+                ->where('id_cartera','=',$request->input('id_cartera'))
+                ->where('id_resultado','=', $request->input("id_resultado"))
+                ->delete();
+            return response()->json(["delete"=>true, "status"=>true], 201);
         }catch(\Exception $e){
-            return response()->json(["error_msj"=>$e->getMessage(),"mensaje"=>"Resultado duplicado para la cartera elegida","status"=>500, "code" => $e->getCode()], 500);
+            return response()->json(["delete"=>false, "error_msj"=>$e->getMessage(),"mensaje"=>"Resultado duplicado para la cartera elegida","status"=>500, "code" => $e->getCode()], 500);
         }
     }
 
