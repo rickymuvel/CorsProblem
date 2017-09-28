@@ -356,6 +356,11 @@ Route::post('/paleta-resultados/tipo-contacto/anadidos', [
     'middleware' => 'auth.jwt'
 ]);
 
+Route::post('/paleta-resultados/clonar', [
+    'uses' => 'PaletaResultadoController@Clonar',
+    'middleware' => 'auth.jwt'
+]);
+
 Route::put('/paleta-resultados', [
     'uses' => 'PaletaResultadoController@update',
     'middleware' => 'auth.jwt'
