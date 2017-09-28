@@ -55,7 +55,7 @@ class PaletaResultadoController extends Controller
                     $PRes->save();
                 }
             }
-            $datos = DB::select('call sp_getPaletaResultados()');
+            $datos = DB::select('call sp_getResultadosAnadidosXCarteraXGestion('. $request->input('id_categoria_gestion') .', '. $request->input('id_cartera') .')');
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
             return response()->json(["error_msj"=>$e->getMessage(),"mensaje"=>"Resultado duplicado para la cartera elegida","status"=>500, "code" => $e->getCode()], 500);
@@ -66,23 +66,30 @@ class PaletaResultadoController extends Controller
     // Esta función guarda las justificaciones basadas en la tabla pr_resultados y la tabla categoria_gestion
     public function setPrJustificaciones(Request $request){
         try {
+//            var_dump($request->justificaciones);exit;
+
             foreach ($request->justificaciones as $valor){
+
                 $PRjus = new Pr_Justificacion();
                 $PRjus->id_pr_resultado = $request->input('id_pr_resultado');
-                $PRjus->id_id_categoria_gestion = $request->input('id_categoria_gestion');
+                $PRjus->id_categoria_gestion = $request->input('id_categoria_gestion');
+                $PRjus->id_justificacion = $valor["id_justificacion"];
                 $PRjus->id_cartera = $request->input('id_cartera');
-                $PRjus->id_justificacion = $valor["id"];
                 $reg = DB::table('pr_justificaciones')
-                                ->where('id_categoria_gestion','=', $request->input('id_categoria_gestion'))
                                 ->where('id_pr_resultado','=', $request->input('id_pr_resultado'))
+                                ->where('id_categoria_gestion','=', $request->input('id_categoria_gestion'))
+                                ->where('id_justificacion','=', $valor["id_justificacion"])
                                 ->where('id_cartera','=',$request->input('id_cartera'))
-                                ->where('id_justificacion','=', $valor["id"])
                                 ->get();
                 if(count($reg)==0){
                     $PRjus->save();
                 }
             }
-            $datos = DB::select('call sp_getPaletaResultados()');
+            $datos = DB::select('call sp_getJustificacionesAnadidasXCarteraXGestion('.
+                $request->input('id_categoria_gestion') .','.
+                $request->input('id_cartera') .','.
+                $request->input('id_pr_resultado') .')');
+//            echo $request->input('id_categoria_gestion') .','.$request->input('id_cartera') .','.$request->input('id_pr_resultado');exit;
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
             return response()->json(["error_msj"=>$e->getMessage(),"mensaje"=>"Resultado duplicado para la cartera elegida","status"=>500, "code" => $e->getCode()], 500);
@@ -139,10 +146,8 @@ class PaletaResultadoController extends Controller
 
     public function deletePrJustificaciones(Request $request){
         try {
-            DB::table('pr_justificaciones')
-                ->where('id_cartera','=',$request->input('id_cartera'))
-                ->where('id_justificacion','=', $request->input("id_justificacion"))
-                ->delete();
+            Pr_Justificacion::where('id', $request->input('id_justificacion'))
+                ->update(['estado' => "inactivo"]);
             return response()->json(["delete"=>true, "status"=>true], 201);
         }catch(\Exception $e){
             return response()->json(["delete"=>false, "error_msj"=>$e->getMessage(),"mensaje"=>"Resultado duplicado para la cartera elegida","status"=>500, "code" => $e->getCode()], 500);

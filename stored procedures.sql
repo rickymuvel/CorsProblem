@@ -68,6 +68,16 @@ DELIMITER ;
 */
 
 DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getPrResultados` $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getPrResultados` (IN _id_paleta_resultado int(10))
+BEGIN
+  SELECT prr.id, re.resultado FROM pr_resultados prr
+	INNER JOIN resultados re ON re.id=prr.id_resultado
+  WHERE prr.id_paleta_resultado=_id_paleta_resultado;
+END$$
+DELIMITER ;
+
+DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getJustificacionesAnadidasXCarteraXGestion` $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getJustificacionesAnadidasXCarteraXGestion`(IN _id_categoria_gestion int(10), _id_cartera int(10), _id_resultado INT(10))
 BEGIN
