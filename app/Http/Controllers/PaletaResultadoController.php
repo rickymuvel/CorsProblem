@@ -66,8 +66,6 @@ class PaletaResultadoController extends Controller
     // Esta función guarda las justificaciones basadas en la tabla pr_resultados y la tabla categoria_gestion
     public function setPrJustificaciones(Request $request){
         try {
-//            var_dump($request->justificaciones);exit;
-
             foreach ($request->justificaciones as $valor){
 
                 $PRjus = new Pr_Justificacion();
@@ -89,50 +87,48 @@ class PaletaResultadoController extends Controller
                 $request->input('id_categoria_gestion') .','.
                 $request->input('id_cartera') .','.
                 $request->input('id_pr_resultado') .')');
-//            echo $request->input('id_categoria_gestion') .','.$request->input('id_cartera') .','.$request->input('id_pr_resultado');exit;
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
-            return response()->json(["error_msj"=>$e->getMessage(),"mensaje"=>"Resultado duplicado para la cartera elegida","status"=>500, "code" => $e->getCode()], 500);
+            return response()->json(["error_msj"=>$e->getMessage(),"mensaje"=>"Justificación duplicada para el tipo de resultado elegido","status"=>500, "code" => $e->getCode()], 500);
         }
     }
 
     public function setPrTipoContacto(Request $request){
         try {
-            $registro = new PaletaResultado();
-            $registro->id_proveedor = $request->input('id_proveedor');
-            $registro->id_cartera = $request->input('id_cartera');
-            $registro->id_categoria_gestion = $request->input('id_categoria_gestion');
-            $registro->save();
+//            echo $request->input('id_pr_resultado'). "-";
+//            echo $request->input('id_cartera'). "-";
+//            echo $request->input('id_categoria_gestion'). "-";
+//            echo $request->input('id_tipo_contacto'). "";exit;
             foreach ($request->tipo_contactos as $valor){
-                $PRtip = new Pr_TipoContacto();
-                $PRtip->id_paleta_resultado = $registro->id;
-                $PRtip->id_cartera = $request->input('id_cartera');
-                $PRtip->id_tipo_contacto = $valor["id"];
+                $PRt_con = new Pr_TipoContacto();
+                $PRt_con->id_pr_resultado = $request->input('id_pr_resultado');
+                $PRt_con->id_categoria_gestion = $request->input('id_categoria_gestion');
+                $PRt_con->id_tipo_contacto = $valor["id_tipo_contacto"];
+                $PRt_con->id_cartera = $request->input('id_cartera');
                 $reg = DB::table('pr_tipo_contacto')
-                    ->where('id_cartera','=',$request->input('id_cartera'))
-                    ->where('id_tipo_contacto','=', $valor["id"])
+                    ->where('id_pr_resultado','=', $request->input('id_pr_resultado'))
+                    ->where('id_categoria_gestion','=', $request->input('id_categoria_gestion'))
+                    ->where('id_tipo_contacto','=', $valor["id_tipo_contacto"])
+                    ->where('id_cartera','=', $request->input('id_cartera'))
                     ->get();
+
                 if(count($reg)==0){
-                    $PRtip->save();
+                    $PRt_con->save();
                 }
             }
-            $datos = DB::select('call sp_getPaletaResultados()');
+
+            $datos = DB::select('call sp_getTipoContactoAnadidasXCarteraXGestion('.
+                $request->input('id_categoria_gestion') .','.
+                $request->input('id_cartera') .','.
+                $request->input('id_pr_resultado') .')');
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
-            return response()->json(["error_msj"=>$e->getMessage(),"mensaje"=>"Resultado duplicado para la cartera elegida","status"=>500, "code" => $e->getCode()], 500);
+            return response()->json(["error_msj"=>$e->getMessage(),"mensaje"=>"Se ha producido un error","status"=>500, "code" => $e->getCode()], 500);
         }
     }
 
     public function deletePrResultados(Request $request){
         try {
-//            DB::table('pr_resultados')
-//                ->where('id_cartera','=',$request->input('id_cartera'))
-//                ->where('id_resultado','=', $request->input("id_resultado"))
-//                ->delete();
-//            Resultado::where([['id_cartera', $request->input('id_cartera')], ['id_resultado', $request->input('id_resultado')]])->update([
-//                'estado' => "inactivo"
-//            ]);
-
             Pr_Resultado::where('id_cartera', $request->input('id_cartera'))
                 ->where('id_resultado', $request->input('id_resultado'))
                 ->update(['estado' => "inactivo"]);
@@ -212,7 +208,10 @@ class PaletaResultadoController extends Controller
 
     public function getJustificacionesAnadidos(Request $request){
         try {
-            $datos = DB::select('call sp_getJustificacionesAnadidasXCarteraXGestion('. $request->input('id_categoria_gestion') .', '. $request->input('id_cartera') .', '. $request->input('id_pr_resultado') .')');
+            $datos = DB::select('call sp_getJustificacionesAnadidasXCarteraXGestion('.
+                $request->input('id_categoria_gestion') .', '.
+                $request->input('id_cartera') .', '.
+                $request->input('id_pr_resultado') .')');
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
             return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);
@@ -221,7 +220,10 @@ class PaletaResultadoController extends Controller
 
     public function getTipoContactoAnadidos(Request $request){
         try {
-            $datos = DB::select('call sp_getTipoContactoAnadidasXCarteraXGestion('. $request->input('id_categoria_gestion') .', '. $request->input('id_cartera') .')');
+            $datos = DB::select('call sp_getTipoContactoAnadidasXCarteraXGestion('.
+                $request->input('id_categoria_gestion') .', '.
+                $request->input('id_cartera') .', '.
+                $request->input('id_pr_resultado') .')');
             return response()->json(["datos"=>$datos, "status"=>true], 201);
         }catch(\Exception $e){
             return response()->json(["msj"=>$e->getMessage(), "code" => $e->getCode(), "status"=>false, ], 201);

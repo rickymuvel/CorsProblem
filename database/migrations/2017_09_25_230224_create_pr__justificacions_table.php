@@ -25,7 +25,6 @@ class CreatePrJustificacionsTable extends Migration
             $table->foreign('id_cartera')->references('id')->on('carteras');
             $table->timestamps();
             $table->string('estado')->default('activo');
-            $table->unique(['id_pr_resultado', 'id_justificacion']);
         });
     }
 

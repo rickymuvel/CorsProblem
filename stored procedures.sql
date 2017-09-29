@@ -48,52 +48,24 @@ BEGIN
 	WHERE j.estado = 'activo';
 END$$
 DELIMITER ;
-/*
-DELIMITER $$
-DROP PROCEDURE IF EXISTS `sp_getJustificacionesAnadidasXCarteraXGestion` $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getJustificacionesAnadidasXCarteraXGestion`(IN _id_categoria_gestion int(10), _id_cartera int(10))
-BEGIN
-SELECT j.id, j.justificacion 
-FROM justificaciones j 
-	INNER JOIN pr_justificaciones prj ON j.id=prj.id_justificacion
-    INNER JOIN pr_resultados pr ON pr.id=prj.id_pr_resultado
-    INNER JOIN paleta_resultados pal ON pr.id_paleta_resultado=pal.id
-WHERE
-	pr.estado='activo' AND
-    pr.id_cartera = _id_cartera AND
-	pal.id_categoria_gestion = _id_categoria_gestion
-ORDER BY j.justificacion ASC;
-END$$
-DELIMITER ;
-*/
-
-DELIMITER $$
-DROP PROCEDURE IF EXISTS `sp_getPrResultados` $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getPrResultados` (IN _id_paleta_resultado int(10))
-BEGIN
-  SELECT prr.id, re.resultado FROM pr_resultados prr
-	INNER JOIN resultados re ON re.id=prr.id_resultado
-  WHERE prr.id_paleta_resultado=_id_paleta_resultado;
-END$$
-DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getJustificacionesAnadidasXCarteraXGestion` $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getJustificacionesAnadidasXCarteraXGestion`(IN _id_categoria_gestion int(10), _id_cartera int(10), _id_resultado INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getJustificacionesAnadidasXCarteraXGestion`(IN _id_categoria_gestion int(10), _id_cartera int(10), _id_pr_resultado INT(10))
 BEGIN
-SELECT j.id, j.justificacion 
+SELECT prj.id_justificacion, prj.id as id_pr_justificacion, j.justificacion 
 FROM justificaciones j 
     INNER JOIN pr_justificaciones prj ON j.id=prj.id_justificacion
     INNER JOIN pr_resultados pr ON pr.id=prj.id_pr_resultado
     INNER JOIN paleta_resultados pal ON pr.id_paleta_resultado=pal.id
 WHERE
-    pr.estado='activo' AND
+    prj.estado = 'activo' AND
     pr.id_cartera = _id_cartera AND
-    pr.id_resultado= _id_resultado AND
+    prj.id_pr_resultado = _id_pr_resultado AND
     pal.id_categoria_gestion = _id_categoria_gestion
 ORDER BY j.justificacion ASC;
 END$$
-
+DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getMenu` $$
@@ -251,6 +223,16 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_getPrResultados` $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getPrResultados`(IN _id_paleta_resultado int(10))
+BEGIN
+  SELECT prr.id, re.resultado FROM pr_resultados prr
+	INNER JOIN resultados re ON re.id=prr.id_resultado
+  WHERE prr.id_paleta_resultado=_id_paleta_resultado;
+END$$
+DELIMITER ;
+
+DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getResultados` $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getResultados`()
 BEGIN
@@ -269,7 +251,7 @@ DROP PROCEDURE IF EXISTS `sp_getResultadosAnadidosXCarteraXGestion` $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getResultadosAnadidosXCarteraXGestion`(IN _id_categoria_gestion int(10), _id_cartera int(10))
 BEGIN
     SELECT 
-    r.id, r.resultado
+    r.id, pr.id as id_resultado, r.resultado
 FROM
     paleta_resultados p
         INNER JOIN
@@ -296,9 +278,9 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `sp_getTipoContactoAnadidasXCarteraXGestion` $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getTipoContactoAnadidasXCarteraXGestion`(IN _id_categoria_gestion int(10), _id_cartera int(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getTipoContactoAnadidasXCarteraXGestion`(IN _id_categoria_gestion int(10), _id_cartera int(10), _id_pr_resultado INT(10))
 BEGIN
-SELECT j.id, j.tipo_contacto 
+SELECT prj.id_tipo_contacto, prj.id as id_pr_tipo_contacto, j.tipo_contacto 
 FROM tipos_contacto j 
 	INNER JOIN pr_tipo_contacto prj ON j.id=prj.id_tipo_contacto
     INNER JOIN pr_resultados pr ON pr.id=prj.id_pr_resultado
@@ -306,6 +288,7 @@ FROM tipos_contacto j
 WHERE
 	pr.estado='activo' AND
     pr.id_cartera = _id_cartera AND
+    prj.id_pr_resultado = _id_pr_resultado AND
 	pal.id_categoria_gestion = _id_categoria_gestion
 ORDER BY j.tipo_contacto ASC;
 END$$
