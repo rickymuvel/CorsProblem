@@ -47,12 +47,19 @@ class PaletaResultadoController extends Controller
                 $PRes->id_paleta_resultado = $registro->id;
                 $PRes->id_cartera = $request->input('id_cartera');
                 $PRes->id_resultado = $valor["id"];
+                // Buscamos el registro específico para conocer si
                 $reg = DB::table('pr_resultados')
                                 ->where('id_cartera','=',$request->input('id_cartera'))
                                 ->where('id_resultado','=', $valor["id"])
                                 ->get();
                 if(count($reg)==0){
                     $PRes->save();
+                }else{
+                    if($reg[0]->estado=="inactivo") {
+                        Pr_Resultado::where('id_resultado', $request->input('id_resultado'))
+                                    ->where('id_cartera', $request->input('id_cartera'))
+                                    ->update(['estado' => "activo"]);
+                    }
                 }
             }
             $datos = DB::select('call sp_getResultadosAnadidosXCarteraXGestion('. $request->input('id_categoria_gestion') .', '. $request->input('id_cartera') .')');
