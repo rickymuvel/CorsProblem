@@ -17,6 +17,7 @@ class CreateTiposCarterasTable extends Migration
             $table->increments('id');
             $table->string('tipo_cartera')->unique();
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

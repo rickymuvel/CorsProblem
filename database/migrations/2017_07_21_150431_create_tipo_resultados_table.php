@@ -18,6 +18,7 @@ class CreateTipoResultadosTable extends Migration
             $table->string('tipo_resultado')->unique();
             $table->integer('peso');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

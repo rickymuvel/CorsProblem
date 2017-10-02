@@ -17,6 +17,7 @@ class CreatePerfilsTable extends Migration
             $table->increments('id');
             $table->string('perfil')->unique();
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

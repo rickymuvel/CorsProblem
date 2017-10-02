@@ -20,6 +20,7 @@ class CreateCargaAsignacionValidacionsTable extends Migration
             $table->foreign('id_usuario')->references('id')->on('users');
             $table->string('estado', 9)->default('pendiente');// (exitosa, fallida, pendiente)
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

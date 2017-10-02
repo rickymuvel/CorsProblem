@@ -18,6 +18,7 @@ class CreateMenuContenedorsTable extends Migration
             $table->integer('nivel')->unsigned();
             $table->integer('id_menu_contenedor')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

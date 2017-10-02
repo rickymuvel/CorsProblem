@@ -24,6 +24,7 @@ class CreatePrJustificacionsTable extends Migration
             $table->integer('id_cartera')->unsigned();
             $table->foreign('id_cartera')->references('id')->on('carteras');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado')->default('activo');
         });
     }

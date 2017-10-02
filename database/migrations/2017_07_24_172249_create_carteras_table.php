@@ -21,6 +21,7 @@ class CreateCarterasTable extends Migration
             $table->foreign('id_proveedor')->references('id')->on('proveedores');
             $table->foreign('id_tipo_cartera')->references('id')->on('tipos_cartera');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

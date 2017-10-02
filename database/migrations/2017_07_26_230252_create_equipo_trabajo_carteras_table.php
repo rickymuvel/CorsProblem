@@ -28,6 +28,7 @@ class CreateEquipoTrabajoCarterasTable extends Migration
             $table->foreign('id_equipo')->references('id')->on('equipos_trabajo');
             $table->foreign('id_segmento')->references('id')->on('segmentos');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

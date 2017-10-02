@@ -19,6 +19,7 @@ class CreateProductosTable extends Migration
             $table->integer('id_tipo_producto')->unsigned();
             $table->foreign('id_tipo_producto')->references('id')->on('tipo_productos');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

@@ -19,6 +19,7 @@ class CreatePerfilMenuContenedorsTable extends Migration
             $table->foreign('id_perfil')->references('id')->on('perfiles');
             $table->string('nombre');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default('activo');
         });
     }

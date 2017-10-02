@@ -20,6 +20,7 @@ class CreateMenuContenedorItemsTable extends Migration
             $table->integer('id_menu_item')->unsigned();
             $table->foreign('id_menu_item')->references('id')->on('menu_items');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default('activo');
         });
     }

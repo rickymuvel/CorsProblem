@@ -20,6 +20,7 @@ class CreateTipoContactoResultadosTable extends Migration
             $table->foreign('id_tipo_contacto')->references('id')->on('tipos_contacto');
             $table->foreign('id_resultado')->references('id')->on('resultados');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

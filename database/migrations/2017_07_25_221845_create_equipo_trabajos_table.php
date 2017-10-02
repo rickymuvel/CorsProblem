@@ -17,6 +17,7 @@ class CreateEquipoTrabajosTable extends Migration
             $table->increments('id');
             $table->string('equipo_trabajo');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

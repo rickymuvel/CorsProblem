@@ -37,6 +37,7 @@ class CreateUsersTable extends Migration
             $table->string("turno");
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

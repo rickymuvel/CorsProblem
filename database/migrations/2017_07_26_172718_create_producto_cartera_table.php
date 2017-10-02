@@ -22,6 +22,7 @@ class CreateProductoCarteraTable extends Migration
             $table->foreign('id_producto')->references('id')->on('productos');
             $table->foreign('id_cartera')->references('id')->on('carteras');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

@@ -23,6 +23,7 @@ class CreatePrResultadosTable extends Migration
             $table->foreign('id_resultado')->references('id')->on('resultados');
             $table->foreign('id_paleta_resultado')->references('id')->on('paleta_resultados');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado')->default('activo');
         });
     }

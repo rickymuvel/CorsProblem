@@ -5,11 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     protected $tipoCarteras = array('Vigente', 'Castigada', 'Judicial', 'Especial', 'Provincia', 'Big ticket');
     protected $carteras = array(
         array('id'=>1,'id_proveedor'=>1, 'id_tipo_cartera'=>1, 'cartera'=>'NPLS'),

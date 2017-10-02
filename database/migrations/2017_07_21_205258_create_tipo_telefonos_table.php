@@ -17,6 +17,7 @@ class CreateTipoTelefonosTable extends Migration
             $table->increments('id');
             $table->string('tipo_telefono')->unique();
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

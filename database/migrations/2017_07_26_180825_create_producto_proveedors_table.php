@@ -20,6 +20,7 @@ class CreateProductoProveedorsTable extends Migration
             $table->foreign('id_producto')->references('id')->on('productos');
             $table->foreign('id_proveedor')->references('id')->on('proveedores');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

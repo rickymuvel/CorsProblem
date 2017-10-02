@@ -22,6 +22,7 @@ class CreatePaletaResultadosTable extends Migration
             $table->foreign('id_cartera')->references('id')->on('carteras');
             $table->foreign('id_categoria_gestion')->references('id')->on('categoria_gestion');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('estado', 8)->default("activo");
         });
     }

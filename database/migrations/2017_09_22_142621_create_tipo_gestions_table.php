@@ -20,6 +20,7 @@ class CreateTipoGestionsTable extends Migration
             $table->string('tipo_gestion');
             $table->string('estado')->default('activo');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
