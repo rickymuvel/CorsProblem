@@ -23,7 +23,7 @@ class PerfilController extends Controller
 
     public function get()
     {
-       $perfiles = Perfil::all();
+       $perfiles = Perfil::get();
        return response()->json(['data'=>$perfiles], 201);
     }
 }
