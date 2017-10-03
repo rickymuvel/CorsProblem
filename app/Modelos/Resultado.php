@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Resultado extends Model
 {
     use SoftDeletes;
+
+    public function tipo_resultado(){
+        return $this->belongsTo('App\TipoResultados', 'id_tipo_resultado');
+    }
 }

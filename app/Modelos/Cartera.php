@@ -16,4 +16,12 @@ class Cartera extends Model
     public function tipo_cartera(){
         return $this->belongsTo('App\TiposCartera', 'id_tipo_cartera');
     }
+
+    public function producto_cartera(){
+        return $this->hasMany('App\ProductoCartera', "id_cartera");
+    }
+
+    public function segmento(){
+        return $this->hasMany('App\Segmento', 'id_cartera');
+    }
 }

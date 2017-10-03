@@ -18,4 +18,12 @@ class Proveedor extends Model
     public function carteras(){
         return $this->hasMany('App\Carteras', 'id_proveedor');
     }
+
+    public function producto_cartera(){
+        return $this->hasMany('App\ProductoCartera', "id_proveedor");
+    }
+
+    public function producto_proveedor(){
+        return $this->hasMany('App\ProductoProveedor', 'id_proveedor');
+    }
 }

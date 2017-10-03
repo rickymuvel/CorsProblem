@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Segmento extends Model
 {
     use SoftDeletes;
+
+    public function cartera(){
+        return $this->belongsTo('App\Cartera', 'id_cartera');
+    }
 }
